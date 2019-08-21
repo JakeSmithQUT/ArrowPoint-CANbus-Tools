@@ -429,12 +429,16 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void TestBTN_Click(object sender, EventArgs e) {
+            /*
             DriverControllerSimulatorForm driverControllerSimulatorForm = new DriverControllerSimulatorForm() {
                 MdiParent = this
             };
             driverControllerSimulatorForm.Show();
             Console.WriteLine("BRUH");
-        }
+            */
+
+            Console.WriteLine("Sim active.");
+    }
 
 
         private void BMUdataGridView_SelectionChanged(object sender, EventArgs e) {
