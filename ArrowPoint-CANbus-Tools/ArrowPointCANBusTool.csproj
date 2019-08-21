@@ -87,6 +87,12 @@
     <Compile Include="Forms\BatteryControllerForm.Designer.cs">
       <DependentUpon>BatteryControllerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainFormPi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainFormPi.Designer.cs">
+      <DependentUpon>MainFormPi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\BatteryTwelveVolt.cs" />
     <Compile Include="Services\AutoDiscoveryService.cs" />
     <Compile Include="Services\ChargerServiceBase.cs" />
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DriverControllerSimulatorForm.resx">
       <DependentUpon>DriverControllerSimulatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainFormPi.resx">
+      <DependentUpon>MainFormPi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MotorControllerSimulatorForm.resx">
       <DependentUpon>MotorControllerSimulatorForm.cs</DependentUpon>
