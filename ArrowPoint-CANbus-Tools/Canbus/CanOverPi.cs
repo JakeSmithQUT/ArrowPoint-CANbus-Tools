@@ -107,7 +107,7 @@ namespace ArrowPointCANBusTool.Canbus
                 EndPoint socketcand = new IPEndPoint(ipAddressMulticast, DEFAULT_PORT);
                 this.sender = new CanSocket();
                 //begin connection to socketcand endpoint
-                this.sender.BeginConnect(socketcand, null, null);
+                this.sender.Connect(socketcand);
                 /*
                 this.udpReceiverConnection = new UdpClient()
                 {
@@ -191,7 +191,7 @@ namespace ArrowPointCANBusTool.Canbus
             // close all currently open sockets
             try
             {
-                sender.BeginDisconnect(false, null, null);
+                sender.Disconnect(false);
                 //udpReceiverConnection.Close();
                 //foreach (UdpClient client in udpSenderConnections)
                 //    client.Close();
@@ -223,8 +223,8 @@ namespace ArrowPointCANBusTool.Canbus
                 if (result > resultToReturn)
                     resultToReturn = result;
             }*/
-            // send "send" message, no flags, null callback, null state
-            sender.BeginSend(send, SocketFlags.None, null, null);
+            // send "send" message
+            resultToReturn = sender.Send(send);
 
             return resultToReturn;
         }
