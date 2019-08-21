@@ -4,7 +4,14 @@ using ArrowPointCANBusTool.Forms;
 using ArrowPointCANBusTool.Model;
 using ArrowPointCANBusTool.Services;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArrowPointCANBusTool.Forms {
@@ -17,7 +24,9 @@ namespace ArrowPointCANBusTool.Forms {
         private int activeBMUId = 0;
 
 
+
         public MainFormPi() {
+            batteryService = BatteryService.Instance;
             InitializeComponent();
         }
 
@@ -34,8 +43,52 @@ namespace ArrowPointCANBusTool.Forms {
             if (UpdateService.Instance.IsUpdateAvailable)
                 new NewReleaseForm(UpdateService.Instance).ShowDialog();
 
+            // BATTERY VIEWER FORM LOAD
+
+            /*
+            // Setup Menu
+            if (batteryService.BatteryData.GetBMUs() != null &&
+                batteryService.BatteryData.GetBMUs().Count == 1)
+                BMU2.Visible = false;
+            */
+
             // Setup BMU Data
             DataGridViewRow sysStatus = new DataGridViewRow();
+            sysStatus.CreateCells(BMUdataGridView);
+            sysStatus.Cells[0].Value = "Sys Status";
+            BMUdataGridView.Rows.Add(sysStatus);
+
+            DataGridViewRow secondHeader = new DataGridViewRow();
+            secondHeader.CreateCells(BMUdataGridView);
+            secondHeader.Cells[7].Value = "Fan Speed (rpm)";
+            secondHeader.Cells[8].Value = "SOC/BAL (Ah)";
+            secondHeader.Cells[9].Value = "SOC/BAL (%)";
+            secondHeader.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Control;
+            BMUdataGridView.Rows.Add(secondHeader);
+
+            DataGridViewRow prechgStatus = new DataGridViewRow();
+            prechgStatus.CreateCells(BMUdataGridView);
+            prechgStatus.Cells[0].Value = "Prechg Status";
+            BMUdataGridView.Rows.Add(prechgStatus);
+
+            DataGridViewRow flags = new DataGridViewRow();
+            flags.CreateCells(BMUdataGridView);
+            flags.Cells[0].Value = "Flags";
+            BMUdataGridView.Rows.Add(flags);
+
+            activeBMUId = 0;
+           // BMUmenuStrip.Items[activeBMUId].BackColor = Color.LightBlue;
+
+            DataGridViewRow twelveVStatus = new DataGridViewRow();
+            twelveVStatus.CreateCells(TwelveVoltDataGridView);
+            TwelveVoltDataGridView.Rows.Add(twelveVStatus);
+
+            BMUdataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            CMUdataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            TwelveVoltDataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+
+
+
 
         }
 
@@ -78,7 +131,7 @@ namespace ArrowPointCANBusTool.Forms {
             };
             settingsForm.Show();
         }
-        */ 
+        */
         private void SendPacketToolStripMenuItem_Click(object sender, EventArgs e) {
             SendPacketForm endPacketForm = new SendPacketForm() {
                 MdiParent = this

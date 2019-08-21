@@ -24,23 +24,14 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormPi));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.BMUdataGridView = new System.Windows.Forms.DataGridView();
-            this.header = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinmV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Max_mV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Min_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Max_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pack_mV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pack_mA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BalancePositive = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BalanceNegative = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMU_Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestBTN = new System.Windows.Forms.Button();
             this.TXTCellVDifference = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -94,6 +85,16 @@
             this.HVDc2DcCurrent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusFlags = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusEvents = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.header = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinmV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Max_mV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Min_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Max_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pack_mV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pack_mA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BalancePositive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BalanceNegative = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMU_Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BMUdataGridView)).BeginInit();
             this.tabHome.SuspendLayout();
@@ -134,9 +135,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BMUdataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.BMUdataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.BMUdataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.BMUdataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.BMUdataGridView.ColumnHeadersHeight = 22;
+            this.BMUdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BMUdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.header,
             this.MinmV,
@@ -156,81 +158,11 @@
             this.BMUdataGridView.ReadOnly = true;
             this.BMUdataGridView.RowHeadersVisible = false;
             this.BMUdataGridView.RowHeadersWidth = 100;
+            this.BMUdataGridView.RowTemplate.Height = 10;
             this.BMUdataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.BMUdataGridView.ShowEditingIcon = false;
-            this.BMUdataGridView.Size = new System.Drawing.Size(657, 96);
+            this.BMUdataGridView.Size = new System.Drawing.Size(657, 125);
             this.BMUdataGridView.TabIndex = 3;
-            // 
-            // header
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            this.header.DefaultCellStyle = dataGridViewCellStyle3;
-            this.header.HeaderText = "";
-            this.header.Name = "header";
-            this.header.ReadOnly = true;
-            // 
-            // MinmV
-            // 
-            this.MinmV.HeaderText = "Min mV";
-            this.MinmV.Name = "MinmV";
-            this.MinmV.ReadOnly = true;
-            this.MinmV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Max_mV
-            // 
-            this.Max_mV.HeaderText = "Max mV";
-            this.Max_mV.Name = "Max_mV";
-            this.Max_mV.ReadOnly = true;
-            this.Max_mV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Min_C
-            // 
-            this.Min_C.HeaderText = "Min C";
-            this.Min_C.Name = "Min_C";
-            this.Min_C.ReadOnly = true;
-            this.Min_C.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Max_C
-            // 
-            this.Max_C.HeaderText = "Max C";
-            this.Max_C.Name = "Max_C";
-            this.Max_C.ReadOnly = true;
-            this.Max_C.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Pack_mV
-            // 
-            this.Pack_mV.HeaderText = "Pack mV";
-            this.Pack_mV.Name = "Pack_mV";
-            this.Pack_mV.ReadOnly = true;
-            this.Pack_mV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Pack_mA
-            // 
-            this.Pack_mA.HeaderText = "Pack mA";
-            this.Pack_mA.Name = "Pack_mA";
-            this.Pack_mA.ReadOnly = true;
-            this.Pack_mA.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // BalancePositive
-            // 
-            this.BalancePositive.HeaderText = "Balance +";
-            this.BalancePositive.Name = "BalancePositive";
-            this.BalancePositive.ReadOnly = true;
-            this.BalancePositive.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // BalanceNegative
-            // 
-            this.BalanceNegative.HeaderText = "Balance -";
-            this.BalanceNegative.Name = "BalanceNegative";
-            this.BalanceNegative.ReadOnly = true;
-            this.BalanceNegative.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // CMU_Count
-            // 
-            this.CMU_Count.HeaderText = "CMU Count";
-            this.CMU_Count.Name = "CMU_Count";
-            this.CMU_Count.ReadOnly = true;
-            this.CMU_Count.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // TestBTN
             // 
@@ -575,9 +507,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmuTelemetry.AutoSize = true;
             this.cmuTelemetry.Controls.Add(this.CMUdataGridView);
-            this.cmuTelemetry.Location = new System.Drawing.Point(3, 108);
+            this.cmuTelemetry.Location = new System.Drawing.Point(3, 137);
             this.cmuTelemetry.Name = "cmuTelemetry";
-            this.cmuTelemetry.Size = new System.Drawing.Size(654, 125);
+            this.cmuTelemetry.Size = new System.Drawing.Size(654, 96);
             this.cmuTelemetry.TabIndex = 4;
             this.cmuTelemetry.TabStop = false;
             this.cmuTelemetry.Text = "CMU Telemetry";
@@ -625,7 +557,7 @@
             this.CMUdataGridView.RowTemplate.ReadOnly = true;
             this.CMUdataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CMUdataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.CMUdataGridView.Size = new System.Drawing.Size(648, 106);
+            this.CMUdataGridView.Size = new System.Drawing.Size(648, 77);
             this.CMUdataGridView.TabIndex = 3;
             // 
             // CellNumber
@@ -833,6 +765,79 @@
             this.StatusEvents.Name = "StatusEvents";
             this.StatusEvents.ReadOnly = true;
             // 
+            // header
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            this.header.DefaultCellStyle = dataGridViewCellStyle3;
+            this.header.HeaderText = "";
+            this.header.Name = "header";
+            this.header.ReadOnly = true;
+            // 
+            // MinmV
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinmV.DefaultCellStyle = dataGridViewCellStyle4;
+            this.MinmV.HeaderText = "Min mV";
+            this.MinmV.Name = "MinmV";
+            this.MinmV.ReadOnly = true;
+            this.MinmV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Max_mV
+            // 
+            this.Max_mV.HeaderText = "Max mV";
+            this.Max_mV.Name = "Max_mV";
+            this.Max_mV.ReadOnly = true;
+            this.Max_mV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Min_C
+            // 
+            this.Min_C.HeaderText = "Min C";
+            this.Min_C.Name = "Min_C";
+            this.Min_C.ReadOnly = true;
+            this.Min_C.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Max_C
+            // 
+            this.Max_C.HeaderText = "Max C";
+            this.Max_C.Name = "Max_C";
+            this.Max_C.ReadOnly = true;
+            this.Max_C.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Pack_mV
+            // 
+            this.Pack_mV.HeaderText = "Pack mV";
+            this.Pack_mV.Name = "Pack_mV";
+            this.Pack_mV.ReadOnly = true;
+            this.Pack_mV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Pack_mA
+            // 
+            this.Pack_mA.HeaderText = "Pack mA";
+            this.Pack_mA.Name = "Pack_mA";
+            this.Pack_mA.ReadOnly = true;
+            this.Pack_mA.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // BalancePositive
+            // 
+            this.BalancePositive.HeaderText = "Balance +";
+            this.BalancePositive.Name = "BalancePositive";
+            this.BalancePositive.ReadOnly = true;
+            this.BalancePositive.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // BalanceNegative
+            // 
+            this.BalanceNegative.HeaderText = "Balance -";
+            this.BalanceNegative.Name = "BalanceNegative";
+            this.BalanceNegative.ReadOnly = true;
+            this.BalanceNegative.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CMU_Count
+            // 
+            this.CMU_Count.HeaderText = "CMU Count";
+            this.CMU_Count.Name = "CMU_Count";
+            this.CMU_Count.ReadOnly = true;
+            this.CMU_Count.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // MainFormPi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -890,16 +895,6 @@
         private System.Windows.Forms.TabControl tabHome;
         private System.Windows.Forms.TabPage HomeTab;
         private System.Windows.Forms.DataGridView BMUdataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn header;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinmV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Max_mV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Min_C;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Max_C;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pack_mV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pack_mA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BalancePositive;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BalanceNegative;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CMU_Count;
         private System.Windows.Forms.GroupBox cmuTelemetry;
         private System.Windows.Forms.DataGridView CMUdataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn CellNumber;
@@ -926,5 +921,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HVDc2DcCurrent;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusFlags;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusEvents;
+        private System.Windows.Forms.DataGridViewTextBoxColumn header;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinmV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Max_mV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Min_C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Max_C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pack_mV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pack_mA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BalancePositive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BalanceNegative;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CMU_Count;
     }
 }
