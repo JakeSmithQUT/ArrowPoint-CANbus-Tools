@@ -44,20 +44,6 @@
             this.BalancePositive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BalanceNegative = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMU_Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmuTelemetry = new System.Windows.Forms.GroupBox();
-            this.CMUdataGridView = new System.Windows.Forms.DataGridView();
-            this.CellNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PCBTemperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CellTemperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CellVoltage0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell1Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell2Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell3Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell4Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell5Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell6Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cell7Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BMUmenuStrip = new System.Windows.Forms.MenuStrip();
             this.BMU1 = new System.Windows.Forms.ToolStripMenuItem();
             this.BMU2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,13 +59,27 @@
             this.HVDc2DcCurrent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusFlags = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusEvents = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMUdataGridView = new System.Windows.Forms.DataGridView();
+            this.Cell7Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell6Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell5Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell4Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell3Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell2Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell1Voltage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CellVoltage0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CellTemperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PCBTemperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CellNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmuTelemetry = new System.Windows.Forms.GroupBox();
             this.bmuTelemetry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BMUdataGridView)).BeginInit();
-            this.cmuTelemetry.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CMUdataGridView)).BeginInit();
             this.BMUmenuStrip.SuspendLayout();
             this.TwelveVoltSystem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TwelveVoltDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CMUdataGridView)).BeginInit();
+            this.cmuTelemetry.SuspendLayout();
             this.SuspendLayout();
             // 
             // bmuTelemetry
@@ -203,162 +203,6 @@
             this.CMU_Count.Name = "CMU_Count";
             this.CMU_Count.ReadOnly = true;
             this.CMU_Count.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // cmuTelemetry
-            // 
-            this.cmuTelemetry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmuTelemetry.AutoSize = true;
-            this.cmuTelemetry.Controls.Add(this.CMUdataGridView);
-            this.cmuTelemetry.Location = new System.Drawing.Point(12, 168);
-            this.cmuTelemetry.Name = "cmuTelemetry";
-            this.cmuTelemetry.Size = new System.Drawing.Size(1118, 213);
-            this.cmuTelemetry.TabIndex = 1;
-            this.cmuTelemetry.TabStop = false;
-            this.cmuTelemetry.Text = "CMU Telemetry";
-            // 
-            // CMUdataGridView
-            // 
-            this.CMUdataGridView.AllowUserToAddRows = false;
-            this.CMUdataGridView.AllowUserToDeleteRows = false;
-            this.CMUdataGridView.AllowUserToResizeColumns = false;
-            this.CMUdataGridView.AllowUserToResizeRows = false;
-            this.CMUdataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CMUdataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CMUdataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CMUdataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.CMUdataGridView.ColumnHeadersHeight = 22;
-            this.CMUdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CellNumber,
-            this.Serial,
-            this.PCBTemperature,
-            this.CellTemperature,
-            this.CellVoltage0,
-            this.Cell1Voltage,
-            this.Cell2Voltage,
-            this.Cell3Voltage,
-            this.Cell4Voltage,
-            this.Cell5Voltage,
-            this.Cell6Voltage,
-            this.Cell7Voltage});
-            this.CMUdataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CMUdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.CMUdataGridView.EnableHeadersVisualStyles = false;
-            this.CMUdataGridView.Location = new System.Drawing.Point(3, 16);
-            this.CMUdataGridView.MultiSelect = false;
-            this.CMUdataGridView.Name = "CMUdataGridView";
-            this.CMUdataGridView.ReadOnly = true;
-            this.CMUdataGridView.RowHeadersVisible = false;
-            this.CMUdataGridView.RowHeadersWidth = 100;
-            this.CMUdataGridView.RowTemplate.ReadOnly = true;
-            this.CMUdataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CMUdataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.CMUdataGridView.Size = new System.Drawing.Size(1112, 194);
-            this.CMUdataGridView.TabIndex = 3;
-            this.CMUdataGridView.SelectionChanged += new System.EventHandler(this.CMUdataGridView_SelectionChanged);
-            // 
-            // CellNumber
-            // 
-            this.CellNumber.HeaderText = "";
-            this.CellNumber.Name = "CellNumber";
-            this.CellNumber.ReadOnly = true;
-            // 
-            // Serial
-            // 
-            this.Serial.DataPropertyName = "SerialNumber";
-            this.Serial.HeaderText = "Serial";
-            this.Serial.Name = "Serial";
-            this.Serial.ReadOnly = true;
-            this.Serial.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // PCBTemperature
-            // 
-            this.PCBTemperature.DataPropertyName = "PCBTemp";
-            this.PCBTemperature.HeaderText = "PCB (C)";
-            this.PCBTemperature.Name = "PCBTemperature";
-            this.PCBTemperature.ReadOnly = true;
-            this.PCBTemperature.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // CellTemperature
-            // 
-            this.CellTemperature.DataPropertyName = "CellTemp";
-            this.CellTemperature.HeaderText = "Cell (C)";
-            this.CellTemperature.Name = "CellTemperature";
-            this.CellTemperature.ReadOnly = true;
-            this.CellTemperature.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // CellVoltage0
-            // 
-            this.CellVoltage0.DataPropertyName = "Cell0mV";
-            dataGridViewCellStyle3.NullValue = null;
-            this.CellVoltage0.DefaultCellStyle = dataGridViewCellStyle3;
-            this.CellVoltage0.HeaderText = "Cell 0 mV";
-            this.CellVoltage0.Name = "CellVoltage0";
-            this.CellVoltage0.ReadOnly = true;
-            this.CellVoltage0.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell1Voltage
-            // 
-            this.Cell1Voltage.DataPropertyName = "Cell1mV";
-            this.Cell1Voltage.HeaderText = "Cell 1 mV";
-            this.Cell1Voltage.Name = "Cell1Voltage";
-            this.Cell1Voltage.ReadOnly = true;
-            this.Cell1Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell2Voltage
-            // 
-            this.Cell2Voltage.DataPropertyName = "Cell2mV";
-            this.Cell2Voltage.HeaderText = "Cell 2 mV";
-            this.Cell2Voltage.Name = "Cell2Voltage";
-            this.Cell2Voltage.ReadOnly = true;
-            this.Cell2Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell3Voltage
-            // 
-            this.Cell3Voltage.DataPropertyName = "Cell3mV";
-            this.Cell3Voltage.HeaderText = "Cell 3 mV";
-            this.Cell3Voltage.Name = "Cell3Voltage";
-            this.Cell3Voltage.ReadOnly = true;
-            this.Cell3Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell4Voltage
-            // 
-            this.Cell4Voltage.DataPropertyName = "Cell4mV";
-            this.Cell4Voltage.HeaderText = "Cell 4 mV";
-            this.Cell4Voltage.Name = "Cell4Voltage";
-            this.Cell4Voltage.ReadOnly = true;
-            this.Cell4Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell5Voltage
-            // 
-            this.Cell5Voltage.DataPropertyName = "Cell5mV";
-            this.Cell5Voltage.HeaderText = "Cell 5 mV";
-            this.Cell5Voltage.Name = "Cell5Voltage";
-            this.Cell5Voltage.ReadOnly = true;
-            this.Cell5Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell6Voltage
-            // 
-            this.Cell6Voltage.DataPropertyName = "Cell6mV";
-            this.Cell6Voltage.HeaderText = "Cell 6 mV";
-            this.Cell6Voltage.Name = "Cell6Voltage";
-            this.Cell6Voltage.ReadOnly = true;
-            this.Cell6Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Cell7Voltage
-            // 
-            this.Cell7Voltage.DataPropertyName = "Cell7mV";
-            this.Cell7Voltage.HeaderText = "Cell 7 mV";
-            this.Cell7Voltage.Name = "Cell7Voltage";
-            this.Cell7Voltage.ReadOnly = true;
-            this.Cell7Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // BMUmenuStrip
             // 
@@ -497,6 +341,162 @@
             this.StatusEvents.Name = "StatusEvents";
             this.StatusEvents.ReadOnly = true;
             // 
+            // CMUdataGridView
+            // 
+            this.CMUdataGridView.AllowUserToAddRows = false;
+            this.CMUdataGridView.AllowUserToDeleteRows = false;
+            this.CMUdataGridView.AllowUserToResizeColumns = false;
+            this.CMUdataGridView.AllowUserToResizeRows = false;
+            this.CMUdataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CMUdataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CMUdataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CMUdataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.CMUdataGridView.ColumnHeadersHeight = 22;
+            this.CMUdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CellNumber,
+            this.Serial,
+            this.PCBTemperature,
+            this.CellTemperature,
+            this.CellVoltage0,
+            this.Cell1Voltage,
+            this.Cell2Voltage,
+            this.Cell3Voltage,
+            this.Cell4Voltage,
+            this.Cell5Voltage,
+            this.Cell6Voltage,
+            this.Cell7Voltage});
+            this.CMUdataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CMUdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.CMUdataGridView.EnableHeadersVisualStyles = false;
+            this.CMUdataGridView.Location = new System.Drawing.Point(3, 16);
+            this.CMUdataGridView.MultiSelect = false;
+            this.CMUdataGridView.Name = "CMUdataGridView";
+            this.CMUdataGridView.ReadOnly = true;
+            this.CMUdataGridView.RowHeadersVisible = false;
+            this.CMUdataGridView.RowHeadersWidth = 100;
+            this.CMUdataGridView.RowTemplate.ReadOnly = true;
+            this.CMUdataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CMUdataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.CMUdataGridView.Size = new System.Drawing.Size(1112, 194);
+            this.CMUdataGridView.TabIndex = 3;
+            this.CMUdataGridView.SelectionChanged += new System.EventHandler(this.CMUdataGridView_SelectionChanged);
+            // 
+            // Cell7Voltage
+            // 
+            this.Cell7Voltage.DataPropertyName = "Cell7mV";
+            this.Cell7Voltage.HeaderText = "Cell 7 mV";
+            this.Cell7Voltage.Name = "Cell7Voltage";
+            this.Cell7Voltage.ReadOnly = true;
+            this.Cell7Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Cell6Voltage
+            // 
+            this.Cell6Voltage.DataPropertyName = "Cell6mV";
+            this.Cell6Voltage.HeaderText = "Cell 6 mV";
+            this.Cell6Voltage.Name = "Cell6Voltage";
+            this.Cell6Voltage.ReadOnly = true;
+            this.Cell6Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Cell5Voltage
+            // 
+            this.Cell5Voltage.DataPropertyName = "Cell5mV";
+            this.Cell5Voltage.HeaderText = "Cell 5 mV";
+            this.Cell5Voltage.Name = "Cell5Voltage";
+            this.Cell5Voltage.ReadOnly = true;
+            this.Cell5Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Cell4Voltage
+            // 
+            this.Cell4Voltage.DataPropertyName = "Cell4mV";
+            this.Cell4Voltage.HeaderText = "Cell 4 mV";
+            this.Cell4Voltage.Name = "Cell4Voltage";
+            this.Cell4Voltage.ReadOnly = true;
+            this.Cell4Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Cell3Voltage
+            // 
+            this.Cell3Voltage.DataPropertyName = "Cell3mV";
+            this.Cell3Voltage.HeaderText = "Cell 3 mV";
+            this.Cell3Voltage.Name = "Cell3Voltage";
+            this.Cell3Voltage.ReadOnly = true;
+            this.Cell3Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Cell2Voltage
+            // 
+            this.Cell2Voltage.DataPropertyName = "Cell2mV";
+            this.Cell2Voltage.HeaderText = "Cell 2 mV";
+            this.Cell2Voltage.Name = "Cell2Voltage";
+            this.Cell2Voltage.ReadOnly = true;
+            this.Cell2Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Cell1Voltage
+            // 
+            this.Cell1Voltage.DataPropertyName = "Cell1mV";
+            this.Cell1Voltage.HeaderText = "Cell 1 mV";
+            this.Cell1Voltage.Name = "Cell1Voltage";
+            this.Cell1Voltage.ReadOnly = true;
+            this.Cell1Voltage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CellVoltage0
+            // 
+            this.CellVoltage0.DataPropertyName = "Cell0mV";
+            dataGridViewCellStyle3.NullValue = null;
+            this.CellVoltage0.DefaultCellStyle = dataGridViewCellStyle3;
+            this.CellVoltage0.HeaderText = "Cell 0 mV";
+            this.CellVoltage0.Name = "CellVoltage0";
+            this.CellVoltage0.ReadOnly = true;
+            this.CellVoltage0.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CellTemperature
+            // 
+            this.CellTemperature.DataPropertyName = "CellTemp";
+            this.CellTemperature.HeaderText = "Cell (C)";
+            this.CellTemperature.Name = "CellTemperature";
+            this.CellTemperature.ReadOnly = true;
+            this.CellTemperature.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // PCBTemperature
+            // 
+            this.PCBTemperature.DataPropertyName = "PCBTemp";
+            this.PCBTemperature.HeaderText = "PCB (C)";
+            this.PCBTemperature.Name = "PCBTemperature";
+            this.PCBTemperature.ReadOnly = true;
+            this.PCBTemperature.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Serial
+            // 
+            this.Serial.DataPropertyName = "SerialNumber";
+            this.Serial.HeaderText = "Serial";
+            this.Serial.Name = "Serial";
+            this.Serial.ReadOnly = true;
+            this.Serial.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CellNumber
+            // 
+            this.CellNumber.HeaderText = "";
+            this.CellNumber.Name = "CellNumber";
+            this.CellNumber.ReadOnly = true;
+            // 
+            // cmuTelemetry
+            // 
+            this.cmuTelemetry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmuTelemetry.AutoSize = true;
+            this.cmuTelemetry.Controls.Add(this.CMUdataGridView);
+            this.cmuTelemetry.Location = new System.Drawing.Point(12, 168);
+            this.cmuTelemetry.Name = "cmuTelemetry";
+            this.cmuTelemetry.Size = new System.Drawing.Size(1118, 213);
+            this.cmuTelemetry.TabIndex = 1;
+            this.cmuTelemetry.TabStop = false;
+            this.cmuTelemetry.Text = "CMU Telemetry";
+            // 
             // BatteryViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,12 +513,12 @@
             this.Load += new System.EventHandler(this.BatteryViewerForm_Load);
             this.bmuTelemetry.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BMUdataGridView)).EndInit();
-            this.cmuTelemetry.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.CMUdataGridView)).EndInit();
             this.BMUmenuStrip.ResumeLayout(false);
             this.BMUmenuStrip.PerformLayout();
             this.TwelveVoltSystem.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TwelveVoltDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CMUdataGridView)).EndInit();
+            this.cmuTelemetry.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -527,8 +527,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox bmuTelemetry;
-        private System.Windows.Forms.GroupBox cmuTelemetry;
-        private System.Windows.Forms.DataGridView CMUdataGridView;
         private System.Windows.Forms.DataGridView BMUdataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn header;
         private System.Windows.Forms.DataGridViewTextBoxColumn MinmV;
@@ -540,18 +538,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BalancePositive;
         private System.Windows.Forms.DataGridViewTextBoxColumn BalanceNegative;
         private System.Windows.Forms.DataGridViewTextBoxColumn CMU_Count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CellNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Serial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PCBTemperature;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CellTemperature;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CellVoltage0;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell1Voltage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell2Voltage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell3Voltage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell4Voltage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell5Voltage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell6Voltage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cell7Voltage;
         private System.Windows.Forms.MenuStrip BMUmenuStrip;
         private System.Windows.Forms.ToolStripMenuItem BMU1;
         private System.Windows.Forms.ToolStripMenuItem BMU2;
@@ -567,5 +553,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HVDc2DcCurrent;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusFlags;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusEvents;
+        private System.Windows.Forms.DataGridView CMUdataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CellNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PCBTemperature;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CellTemperature;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CellVoltage0;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell1Voltage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell2Voltage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell3Voltage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell4Voltage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell5Voltage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell6Voltage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cell7Voltage;
+        private System.Windows.Forms.GroupBox cmuTelemetry;
     }
 }
