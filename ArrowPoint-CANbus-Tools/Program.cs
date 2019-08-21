@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ArrowPointCANBusTool.Forms;
 
 namespace ArrowPointCANBusTool
 {
@@ -17,7 +18,8 @@ namespace ArrowPointCANBusTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            // TODO: Add a switch for pi and pc
+            Application.Run(new MainFormPi());
         }
     }
 }
