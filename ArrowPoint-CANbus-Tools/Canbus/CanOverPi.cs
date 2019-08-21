@@ -175,7 +175,7 @@ namespace ArrowPointCANBusTool.Canbus
                 return false;
             }
 
-            // hope that it has async connected
+            // hope that it has connected
             this.isConnected = true;
 
             //StartReceiver();
