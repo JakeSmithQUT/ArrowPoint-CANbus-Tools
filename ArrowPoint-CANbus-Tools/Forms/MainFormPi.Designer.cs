@@ -24,9 +24,22 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormPi));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.BMUdataGridView = new System.Windows.Forms.DataGridView();
+            this.header = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinmV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Max_mV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Min_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Max_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pack_mV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pack_mA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BalancePositive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BalanceNegative = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMU_Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bmuTelemetry = new System.Windows.Forms.GroupBox();
             this.TestBTN = new System.Windows.Forms.Button();
             this.TXTCellVDifference = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,6 +67,8 @@
             this.tabHome = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BMUdataGridView)).BeginInit();
             this.tabHome.SuspendLayout();
             this.HomeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,6 +82,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.BMUdataGridView);
+            this.tabPage2.Controls.Add(this.bmuTelemetry);
             this.tabPage2.Location = new System.Drawing.Point(4, 54);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -74,6 +91,126 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // BMUdataGridView
+            // 
+            this.BMUdataGridView.AllowUserToAddRows = false;
+            this.BMUdataGridView.AllowUserToDeleteRows = false;
+            this.BMUdataGridView.AllowUserToResizeColumns = false;
+            this.BMUdataGridView.AllowUserToResizeRows = false;
+            this.BMUdataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BMUdataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.BMUdataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BMUdataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.BMUdataGridView.ColumnHeadersHeight = 22;
+            this.BMUdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.header,
+            this.MinmV,
+            this.Max_mV,
+            this.Min_C,
+            this.Max_C,
+            this.Pack_mV,
+            this.Pack_mA,
+            this.BalancePositive,
+            this.BalanceNegative,
+            this.CMU_Count});
+            this.BMUdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.BMUdataGridView.EnableHeadersVisualStyles = false;
+            this.BMUdataGridView.Location = new System.Drawing.Point(3, 24);
+            this.BMUdataGridView.MultiSelect = false;
+            this.BMUdataGridView.Name = "BMUdataGridView";
+            this.BMUdataGridView.ReadOnly = true;
+            this.BMUdataGridView.RowHeadersVisible = false;
+            this.BMUdataGridView.RowHeadersWidth = 100;
+            this.BMUdataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.BMUdataGridView.ShowEditingIcon = false;
+            this.BMUdataGridView.Size = new System.Drawing.Size(657, 96);
+            this.BMUdataGridView.TabIndex = 3;
+            // 
+            // header
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            this.header.DefaultCellStyle = dataGridViewCellStyle1;
+            this.header.HeaderText = "";
+            this.header.Name = "header";
+            this.header.ReadOnly = true;
+            // 
+            // MinmV
+            // 
+            this.MinmV.HeaderText = "Min mV";
+            this.MinmV.Name = "MinmV";
+            this.MinmV.ReadOnly = true;
+            this.MinmV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Max_mV
+            // 
+            this.Max_mV.HeaderText = "Max mV";
+            this.Max_mV.Name = "Max_mV";
+            this.Max_mV.ReadOnly = true;
+            this.Max_mV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Min_C
+            // 
+            this.Min_C.HeaderText = "Min C";
+            this.Min_C.Name = "Min_C";
+            this.Min_C.ReadOnly = true;
+            this.Min_C.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Max_C
+            // 
+            this.Max_C.HeaderText = "Max C";
+            this.Max_C.Name = "Max_C";
+            this.Max_C.ReadOnly = true;
+            this.Max_C.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Pack_mV
+            // 
+            this.Pack_mV.HeaderText = "Pack mV";
+            this.Pack_mV.Name = "Pack_mV";
+            this.Pack_mV.ReadOnly = true;
+            this.Pack_mV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Pack_mA
+            // 
+            this.Pack_mA.HeaderText = "Pack mA";
+            this.Pack_mA.Name = "Pack_mA";
+            this.Pack_mA.ReadOnly = true;
+            this.Pack_mA.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // BalancePositive
+            // 
+            this.BalancePositive.HeaderText = "Balance +";
+            this.BalancePositive.Name = "BalancePositive";
+            this.BalancePositive.ReadOnly = true;
+            this.BalancePositive.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // BalanceNegative
+            // 
+            this.BalanceNegative.HeaderText = "Balance -";
+            this.BalanceNegative.Name = "BalanceNegative";
+            this.BalanceNegative.ReadOnly = true;
+            this.BalanceNegative.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CMU_Count
+            // 
+            this.CMU_Count.HeaderText = "CMU Count";
+            this.CMU_Count.Name = "CMU_Count";
+            this.CMU_Count.ReadOnly = true;
+            this.CMU_Count.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // bmuTelemetry
+            // 
+            this.bmuTelemetry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bmuTelemetry.AutoSize = true;
+            this.bmuTelemetry.Location = new System.Drawing.Point(-228, 91);
+            this.bmuTelemetry.Name = "bmuTelemetry";
+            this.bmuTelemetry.Size = new System.Drawing.Size(1118, 130);
+            this.bmuTelemetry.TabIndex = 1;
+            this.bmuTelemetry.TabStop = false;
+            this.bmuTelemetry.Text = "BMU Telemetry";
             // 
             // TestBTN
             // 
@@ -422,6 +559,9 @@
             this.Name = "MainFormPi";
             this.Text = "MainFormPi";
             this.Load += new System.EventHandler(this.MainFormPi_Load);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BMUdataGridView)).EndInit();
             this.tabHome.ResumeLayout(false);
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
@@ -461,5 +601,17 @@
         private System.Windows.Forms.ProgressBar batteryPRO;
         private System.Windows.Forms.TabControl tabHome;
         private System.Windows.Forms.TabPage HomeTab;
+        private System.Windows.Forms.DataGridView BMUdataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn header;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinmV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Max_mV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Min_C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Max_C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pack_mV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pack_mA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BalancePositive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BalanceNegative;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CMU_Count;
+        private System.Windows.Forms.GroupBox bmuTelemetry;
     }
 }
