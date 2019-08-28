@@ -502,6 +502,12 @@ namespace ArrowPointCANBusTool.Forms {
 
             int sent = CanService.Instance.SendMessage(canPacket);
 
+            if (CanService.Instance.IsConnected() == false) {
+                connectionLBL.Text = "Not Connected";
+            } else {
+                connectionLBL.Text = "Connected";
+            }
+
             var lines = CanService.Instance.AvailableInterfaces.Select(kvp => kvp.Key + " -> " + kvp.Value);
             Console.WriteLine(lines);
             //Console.WriteLine(CanService.Instance.AvailableInterfaces);
