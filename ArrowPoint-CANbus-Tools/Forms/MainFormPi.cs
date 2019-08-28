@@ -77,7 +77,7 @@ namespace ArrowPointCANBusTool.Forms {
             BMUdataGridView.Rows.Add(flags);
 
             activeBMUId = 0;
-           // BMUmenuStrip.Items[activeBMUId].BackColor = Color.LightBlue;
+            // BMUmenuStrip.Items[activeBMUId].BackColor = Color.LightBlue;
 
             DataGridViewRow twelveVStatus = new DataGridViewRow();
             twelveVStatus.CreateCells(TwelveVoltDataGridView);
@@ -247,7 +247,7 @@ namespace ArrowPointCANBusTool.Forms {
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK) {
                 ConfigService.Instance.SaveConfig(saveFileDialog.FileName);
-            } 
+            }
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e) {
@@ -271,7 +271,7 @@ namespace ArrowPointCANBusTool.Forms {
                     // Sys status
                     TXTMinCellV.Text = activeBMU.MinCellVoltage.ToString();
                     TXTMinCellV.Text = activeBMU.MaxCellVoltage.ToString();
-                    TXTMinCellVTemp.Text= ((double)activeBMU.MinCellTemp / 10).ToString();
+                    TXTMinCellVTemp.Text = ((double)activeBMU.MinCellTemp / 10).ToString();
                     TXTMaxCellVTemp.Text = ((double)activeBMU.MaxCellTemp / 10).ToString();
                     TXTBatTemp.Text = ((((double)activeBMU.MaxCellTemp / 10) - ((double)activeBMU.MinCellTemp / 10)) / 2).ToString();
                     //sysStatus.Cells[5].Value = activeBMU.BatteryVoltage;
@@ -279,7 +279,7 @@ namespace ArrowPointCANBusTool.Forms {
                     //sysStatus.Cells[7].Value = activeBMU.BalanceVoltageThresholdRising;
                     //sysStatus.Cells[8].Value = activeBMU.BalanceVoltageThresholdFalling;
                     //sysStatus.Cells[9].Value = activeBMU.CMUCount;
-                    
+
                     /*
 
                     // preChgStatus
@@ -438,7 +438,7 @@ namespace ArrowPointCANBusTool.Forms {
             */
 
             Console.WriteLine("Sim active.");
-    }
+        }
 
 
         private void BMUdataGridView_SelectionChanged(object sender, EventArgs e) {
@@ -452,6 +452,7 @@ namespace ArrowPointCANBusTool.Forms {
         private void TwelveVoltDataGridView_SelectionChanged(object sender, EventArgs e) {
             TwelveVoltDataGridView.ClearSelection();
         }
+
 
         private void FormatCell(DataGridViewCell cell, int cmuNo, int cellNo) {
 
@@ -492,5 +493,24 @@ namespace ArrowPointCANBusTool.Forms {
                 cell.Style.Font = new Font(cell.Style.Font, FontStyle.Bold);
 
         }
+
+        private void Button1_Click(object sender, EventArgs e) {
+            string samplePacket = "005472697469756d00be61fea90031010000050800080000000000000000";
+            CanPacket canPacket = new CanPacket(samplePacket);
+            CanService.Instance.Connect("127.0.0.1",29536);
+
+
+            int sent = CanService.Instance.SendMessage(canPacket);
+
+            var lines = CanService.Instance.AvailableInterfaces.Select(kvp => kvp.Key + " -> " + kvp.Value);
+            Console.WriteLine(lines);
+            //Console.WriteLine(CanService.Instance.AvailableInterfaces);
+            //Consle.WriteLine();
+            Console.WriteLine("sent");
+
+        }
     }
+
 }
+
+
