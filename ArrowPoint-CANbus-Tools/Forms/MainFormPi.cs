@@ -497,7 +497,7 @@ namespace ArrowPointCANBusTool.Forms {
         private void Button1_Click(object sender, EventArgs e) {
             string samplePacket = "005472697469756d00be61fea90031010000050800080000000000000000";
             CanPacket canPacket = new CanPacket(samplePacket);
-            CanService.Instance.Connect("127.0.0.1",29536);
+            CanService.Instance.Connect("10.11.12.13",29536);//29536
 
 
             int sent = CanService.Instance.SendMessage(canPacket);
