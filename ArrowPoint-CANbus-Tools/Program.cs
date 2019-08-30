@@ -19,7 +19,7 @@ namespace ArrowPointCANBusTool
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // TODO: Add a switch for pi and pc
-            Application.Run(new MainFormPi());
+            Application.Run(new FormMain());
         }
     }
 }

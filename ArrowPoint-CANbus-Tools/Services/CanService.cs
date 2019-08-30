@@ -75,8 +75,8 @@ namespace ArrowPointCANBusTool.Services
 
         public Boolean ConnectViaIPDefaults()
         {
-            String ipAddress = "239.255.60.60";
-            int port = 4876;
+            String ipAddress = "10.16.16.78";
+            int port = 29536;
 
             return Connect(ipAddress, port);
         }
@@ -91,6 +91,18 @@ namespace ArrowPointCANBusTool.Services
                 SelectedInterfaces = selectedInterfaces
             };
             canConnection = (ICanTrafficInterface)ethernetCanConnection;
+            return PostConnect();
+        }
+
+
+        public Boolean ConnectOverSocketCan(string ip, int port) {
+            CanOverPi piCanConnection = new CanOverPi() {
+                Ip = ip,
+                Port = port,
+                ReceivedCanPacketCallBack = ReceivedCanPacketCallBack,
+                SelectedInterfaces = selectedInterfaces
+            };
+            canConnection = (ICanTrafficInterface)piCanConnection;
             return PostConnect();
         }
 
@@ -125,7 +137,7 @@ namespace ArrowPointCANBusTool.Services
                 if (canConnection != null)
                     return canConnection.AvailableInterfaces;
                 else
-                    return new CanOverEthernet().AvailableInterfaces;
+                    return new CanOverPi().AvailableInterfaces;
             }
         }
 

@@ -508,7 +508,7 @@ namespace ArrowPointCANBusTool.Forms {
                 connectionLBL.Text = "Connected";
             }
 
-            var lines = CanService.Instance.AvailableInterfaces.Select(kvp => kvp.Key + " -> " + kvp.Value);
+            var lines = CanService.Instance.AvailableInterfaces.Select(kvp => kvp.Key.ToString() + " -> " + kvp.Value.ToString());
             Console.WriteLine(lines);
             //Console.WriteLine(CanService.Instance.AvailableInterfaces);
             //Consle.WriteLine();

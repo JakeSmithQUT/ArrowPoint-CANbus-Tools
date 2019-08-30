@@ -11,8 +11,8 @@ namespace ArrowPointCANBusTool.Forms
 {
     public partial class ConnectForm : Form
     {           
-        private String ipAddress = "239.255.60.60";
-        private int port = 4876;
+        private String ipAddress = "10.16.16.78";
+        private int port = 29536;
 
         private class IpDetails
         {
@@ -105,7 +105,7 @@ namespace ArrowPointCANBusTool.Forms
 
             CanService.Instance.SelectedInterfaces = selectedInterfaces;
 
-            Boolean canServiceConnected = CanService.Instance.Connect(this.ipAddress, this.port);            
+            Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);            
 
             if (ipAddressParsed && portParsed && canServiceConnected)
             {

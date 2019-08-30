@@ -1,316 +1,203 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
-using UVC.SocketCAN;
+using System.Threading.Tasks;
+using ArrowPointCANBusTool.Canbus;
 
 namespace ArrowPointCANBusTool.Canbus
 {
-    class CanOverPi : ICanTrafficInterface
+    public class CanOverPi : ICanTrafficInterface
     {
 
-        /*
-         * Can Packet structure is:
-         * 
-         * +-+------------------+-+----------------------+--------------+---------+----------+---------+
-         * |8|56 - Bus Identifer|8|56 - Client Identifier|32 - Identifer|8 - Flags|8 - Length|64 - Data|
-         * +-+------------------+-+----------------------+--------------+---------+----------+---------+
-         * 
-         */
+        private const string ERROR_STR = "ERROR";
 
-        private const String DEFAULT_IPADDRESS = "127.0.0.1";
-        // default daemon port for socketcand
+        private static readonly Object comms_locker = new Object();
+
+        private TcpClient client = null;
+
+        private bool SocketCanInitialised = false;
+
+        private const String DEFAULT_IPADDRESS = "10.16.16.78";
         private const int DEFAULT_PORT = 29536;
-
-        private Thread UdpReceiverThread;
-        private UdpClient udpReceiverConnection;
-        //private List<UdpClient> udpSenderConnections;
-        private CanSocket sender;
-        private Boolean isConnected = false;
-        private IPAddress ipAddressMulticast;
-        private IPEndPoint ipEndPointMulticast;
-        private IPEndPoint localEndPoint;
 
         public string Ip { get; set; } = DEFAULT_IPADDRESS;
         public int Port { get; set; } = DEFAULT_PORT;
+
+
         public ReceivedCanPacketHandler ReceivedCanPacketCallBack { get; set; }
-        public List<string> SelectedInterfaces { get; set; }
 
-        internal void Close()
+        public Dictionary<string, string> AvailableInterfaces
         {
-            Disconnect();
-        }
-
-        // only interface is the socketcand daemon
-        public Dictionary<string, string> AvailableInterfaces {
-            get {
-                Dictionary<string, string> availableInterfaces = null;
-                availableInterfaces.Add(DEFAULT_IPADDRESS, DEFAULT_IPADDRESS + ":" + DEFAULT_PORT);
-                // Find all available network interfaces
-                /*
-                NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-
-                foreach (NetworkInterface networkInterface in networkInterfaces)
-                {
-                    if ((!networkInterface.Supports(NetworkInterfaceComponent.IPv4)) ||
-                        (networkInterface.OperationalStatus != OperationalStatus.Up))
-                    {
-                        continue;
-                    }
-
-                    IPInterfaceProperties adapterProperties = networkInterface.GetIPProperties();
-                    UnicastIPAddressInformationCollection unicastIPAddresses = adapterProperties.UnicastAddresses;
-                    IPAddress ipAddress = null;
-
-                    foreach (UnicastIPAddressInformation unicastIPAddress in unicastIPAddresses)
-                    {
-                        if (unicastIPAddress.Address.AddressFamily != AddressFamily.InterNetwork)
-                        {
-                            continue;
-                        }
-
-                        ipAddress = unicastIPAddress.Address;
-                        break;
-                    }
-
-                    if (ipAddress == null)
-                    {
-                        continue;
-                    }
-
-                    if (availableInterfaces == null)
-                        availableInterfaces = new Dictionary<string, string>();
-
-                    availableInterfaces.Add(ipAddress.ToString(), ipAddress.ToString() + " - " + networkInterface.Name);
-
-                }*/
-
-                return availableInterfaces;
-            }
-        }
-
-        // currently connects to all available 
-        public Boolean Connect()
-        {
-
-            // Both the sender the receiver
-            ipAddressMulticast = IPAddress.Parse(this.Ip);
-            ipEndPointMulticast = new IPEndPoint(this.ipAddressMulticast, this.Port);
-            localEndPoint = new IPEndPoint(IPAddress.Any, this.Port);
-
-            try
+            get
             {
-                // create socketcand endpoint
-                EndPoint socketcand = new IPEndPoint(ipAddressMulticast, DEFAULT_PORT);
-                this.sender = new CanSocket();
-                //begin connection to socketcand endpoint
-                this.sender.Connect(socketcand);
-                /*
-                this.udpReceiverConnection = new UdpClient()
+                Dictionary<string, string> interfaces = new Dictionary<string, string>
                 {
-                    ExclusiveAddressUse = false
+                    { "Can0", "Can0" }
                 };
-                udpReceiverConnection.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                udpReceiverConnection.Client.Bind(localEndPoint);
+                return interfaces;
+            }
+        }
 
-                // join multicast group on all available network interfaces
-                NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-
-                // for each interface that is available, 
-                foreach (NetworkInterface networkInterface in networkInterfaces)
+        public List<string> SelectedInterfaces {
+            get
+            {
+                List<string> selectedInterfaces = new List<string>()
                 {
-                    // if it doesnt support IPv4 networking or is not currently operational continue
-                    if ((!networkInterface.Supports(NetworkInterfaceComponent.IPv4)) ||
-                        (networkInterface.OperationalStatus != OperationalStatus.Up))
-                    {
-                        continue;
-                    }
-
-                    IPInterfaceProperties adapterProperties = networkInterface.GetIPProperties();
-                    UnicastIPAddressInformationCollection unicastIPAddresses = adapterProperties.UnicastAddresses;
-                    IPAddress ipAddress = null;
-
-                    foreach (UnicastIPAddressInformation unicastIPAddress in unicastIPAddresses)
-                    {
-                        if (unicastIPAddress.Address.AddressFamily != AddressFamily.InterNetwork)
-                        {
-                            continue;
-                        }
-
-                        ipAddress = unicastIPAddress.Address;
-                        break;
-                    }
-
-                    if (ipAddress == null)
-                    {
-                        continue;
-                    }
-
-                    if (SelectedInterfaces != null && !SelectedInterfaces.Contains(ipAddress.ToString()))
-                    {
-                        continue;
-                    }
-
-                    udpReceiverConnection.JoinMulticastGroup(ipAddressMulticast, ipAddress);
-
-                    // Also create a client for this interface and add it to the list of interfaces
-                    IPEndPoint interfaceEndPoint = new IPEndPoint(ipAddress, this.Port);
-
-                    UdpClient sendClient = new UdpClient();
-                    sendClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                    sendClient.Client.MulticastLoopback = true;
-                    sendClient.Client.Bind(interfaceEndPoint);
-                    sendClient.JoinMulticastGroup(ipAddressMulticast);
-
-                    if (udpSenderConnections == null) udpSenderConnections = new List<UdpClient>();
-                    udpSenderConnections.Add(sendClient);
-                }*/
-
+                    { "Can0" }
+                };
+                return selectedInterfaces;
             }
-            catch
+            set
             {
-                return false;
+
             }
-
-            // hope that it has connected
-            this.isConnected = true;
-
-            //StartReceiver();
-
-            return isConnected;
         }
 
-        // disconnect from all currently connected interfaces
-        public Boolean Disconnect()
+        private bool isConnected = false;
+
+        public bool Connect()
         {
-            if (!isConnected) return false;
-
-            // close all currently open sockets
-            try
-            {
-                sender.Disconnect(false);
-                //udpReceiverConnection.Close();
-                //foreach (UdpClient client in udpSenderConnections)
-                //    client.Close();
-            }
-            catch { }
-
-            //StopReceiver();
-
-            isConnected = false;
-
+            isConnected = true;
             return isConnected;
         }
 
-        // send the canPacket over Pi socketcand interface
+        public bool Disconnect()
+        {
+            isConnected = false;
+            return isConnected;
+        }
+
+        public bool IsConnected()
+        {
+            return isConnected;
+        }
+
+        private string SendMessageGetResponseInner(String message) {
+
+            Debug.WriteLine("ID: 2.1");
+
+            if (Ip == null || Port == 0) return (ERROR_STR);
+
+            Debug.WriteLine("ID: 2.2");
+
+            lock (comms_locker) {
+
+                Debug.WriteLine("ID: 2.3");
+
+                NetworkStream stream = null;
+
+                // Translate the passed message into ASCII and store it as a Byte array.
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes(message + "\r\n");
+
+                // Get a client stream for reading and writing, we try to reuse them so only do this if necessary
+                if (client == null || client.Connected == false) {
+                    client = new TcpClient {
+                        ReceiveTimeout = 500
+                    };
+                    client.ConnectAsync(Ip, Port).Wait(500);
+                }
+
+                Debug.WriteLine("ID: 2.4");
+
+                if (client == null || client.Connected == false) return (ERROR_STR);
+
+                stream = client.GetStream();
+
+                Debug.WriteLine("ID: 2.4.1");
+
+                // Send the message to the connected TcpServer. 
+                stream.Write(data, 0, data.Length);
+
+                Debug.WriteLine("ID: 2.4.2");
+                // Receive the TcpServer.response.
+
+                // Buffer to store the response bytes.
+                data = new Byte[256];
+
+                // String to store the response ASCII representation.
+                String responseData = String.Empty;
+
+                int delayed = 0;
+
+                Debug.WriteLine("ID: 2.5");
+
+                // Read the first batch of the TcpServer response bytes.
+                while (delayed < 1000) {
+                    char finalChar = ' ';
+
+                    if (responseData != null && responseData != String.Empty)
+                        finalChar = responseData[responseData.Length - 1];
+
+                    if (finalChar != '\r') {
+                        Int32 bytes = 0;
+
+                        try {
+                            bytes = stream.Read(data, 0, data.Length);
+                            responseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                        } catch {
+                            // Read error, lets leave the loop
+                            break;
+                        }
+                    } else break;
+                    Thread.Sleep(10);
+                    delayed += 10;
+                }
+
+                Debug.WriteLine("ID: 2.6 - " + responseData);
+
+                if (responseData != String.Empty) {
+                    responseData = responseData.Replace("\r\n", string.Empty);
+                    responseData = responseData.Replace("\r", string.Empty);
+                }
+
+                // Close everything.
+                stream?.Close();
+
+                Debug.WriteLine("ID: 2.7");
+
+                return responseData;
+            }
+        }
+
+
+        public string SendMessageGetResponse(String message) {
+            try {
+
+                Debug.WriteLine("ID: 1");
+
+                if (!SocketCanInitialised) {
+                    // Actually put your interfaces here
+
+                    if (!SendMessageGetResponseInner("< open can0 >").Equals("< hi >< ok >"))
+                        return (ERROR_STR);
+                    SocketCanInitialised = true;
+                }
+
+                Debug.WriteLine("ID: 2");
+
+                string response = SendMessageGetResponseInner(message);
+
+                Debug.WriteLine("ID: 3");
+
+                // Try again on an error
+                if (response == null || response.Equals(ERROR_STR))
+                    response = SendMessageGetResponseInner(message);
+                return response;
+            } catch {
+                return ERROR_STR;
+            }
+        }
+
+
         public int SendMessage(CanPacket canPacket)
         {
-            if (!isConnected) return -1;
-
-            //var data = canPacket.RawBytes;
-
-            var data = new ArraySegment<byte>(canPacket.RawBytes, 0, 8);
-            var send = new List<ArraySegment<byte>>() { data };
-            int resultToReturn = 0;
-
-            // send CAN to each client -> change to interface via socketCAN 
-            /*foreach (UdpClient client in udpSenderConnections)
-            {
-                int result = client.Send(data, data.Length, ipEndPointMulticast);
-                if (result > resultToReturn)
-                    resultToReturn = result;
-            }*/
-            // send "send" message
-            resultToReturn = sender.Send(send);
-
-            return resultToReturn;
-        }
-
-        public Boolean IsConnected()
-        {
-            return isConnected;
-        }
-
-        /*
-        private Boolean StartReceiver()
-        {
-            try
-            {
-                UdpReceiverThread = new Thread(UdpReceiverLoop);
-                UdpReceiverThread.Start();
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private void StopReceiver()
-        {
-            try
-            {
-                UdpReceiverThread.Abort();
-            }
-            catch { };
-        }
-        */
-
-        private void UdpReceiverLoop()
-        {
-            while (this.isConnected)
-            {
-                try
-                {
-                    var ipEndPoint = new IPEndPoint(IPAddress.Any, this.Port);
-                    byte[] data = udpReceiverConnection.Receive(ref ipEndPoint);
-                    IPAddress sourceAddress = ipEndPoint.Address;
-                    int port = ipEndPoint.Port;
-
-                    if (CheckIfTritiumDatagram(data))
-                    {
-                        SplitCanPackets(data, sourceAddress, port);
-                    }
-                }
-                catch
-                {
-                    Disconnect();
-                }
-            }
-        }
-
-        private bool CheckIfTritiumDatagram(byte[] data)
-        {
-            string dataString = MyExtensions.ByteArrayToText(data);
-
-            // Some tritium Can Bridges uses Tritiub rather that Tritium
-            // The latest release seems to just use Tri
-            return dataString.Contains("Tri");
-        }
-
-        private void SplitCanPackets(byte[] data, IPAddress sourceIPAddress, int sourcePort)
-        {
-            Byte[] header = data.Take(16).ToArray();
-            Byte[] body = data.Skip(16).ToArray();
-            int numPackets = body.Length / 14;
-
-            for (int i = 0; i < numPackets; i++)
-            {
-                CanPacket canPacket = new CanPacket(header.Concat(body.Take(14).ToArray()).ToArray())
-                {
-                    SourceIPAddress = sourceIPAddress,
-                    SourceIPPort = sourcePort
-                };
-
-                ReceivedCanPacketCallBack?.Invoke(canPacket);
-
-                body = body.Skip(14).ToArray();
-            }
-
+            // Put the real values in here
+            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
+            return 1;
         }
     }
 }
