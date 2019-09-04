@@ -88,10 +88,6 @@ namespace ArrowPointCANBusTool.Forms {
             BMUdataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             CMUdataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             TwelveVoltDataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
-
-
-
-
         }
 
 
@@ -134,80 +130,7 @@ namespace ArrowPointCANBusTool.Forms {
             settingsForm.Show();
         }
         */
-        private void SendPacketToolStripMenuItem_Click(object sender, EventArgs e) {
-            SendPacketForm endPacketForm = new SendPacketForm() {
-                MdiParent = this
-            };
-            endPacketForm.Show();
-        }
 
-        private void SendCanPacketsToolStripMenuItem_Click(object sender, EventArgs e) {
-            SendPacketForm sendPacketForm = new SendPacketForm() {
-                MdiParent = this
-            };
-            sendPacketForm.Show();
-        }
-
-        private void MotorControllerToolStripMenuItem_Click(object sender, EventArgs e) {
-            MotorControllerSimulatorForm motorControllerSimulatorForm = new MotorControllerSimulatorForm() {
-                MdiParent = this
-            };
-            motorControllerSimulatorForm.Show();
-        }
-
-        private void CanbusOverviewToolStripMenuItem_Click(object sender, EventArgs e) {
-            CanbusDashboardForm canbusDashboardForm = new CanbusDashboardForm(this.carData) {
-                MdiParent = this
-            };
-            canbusDashboardForm.Show();
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e) {
-            AboutBox aboutBox = new AboutBox {
-                MdiParent = this
-            };
-            aboutBox.Show();
-        }
-
-        private void DriverControllerToolStripMenuItem_Click(object sender, EventArgs e) {
-            DriverControllerSimulatorForm driverControllerSimulatorForm = new DriverControllerSimulatorForm() {
-                MdiParent = this
-            };
-            driverControllerSimulatorForm.Show();
-        }
-
-        private void DataLoggerToolStripMenuItem_Click(object sender, EventArgs e) {
-            DataLoggerForm dataLoggerForm = new DataLoggerForm() {
-                MdiParent = this
-            };
-            dataLoggerForm.Show();
-        }
-
-        private void LogReplayerToolStripMenuItem_Click(object sender, EventArgs e) {
-            DataLogReplayerForm dataLogReplayerForm = new DataLogReplayerForm() {
-                MdiParent = this
-            };
-            dataLogReplayerForm.Show();
-        }
-
-        /*
-        private void ConnectedStatusLabel_Click(object sender, EventArgs e) {
-            ShowConnectionForm();
-        }
-        */
-        private void BatteryChargerToolStripMenuItem_Click(object sender, EventArgs e) {
-            ChargerControlForm chargerControlForm = new ChargerControlForm() {
-                MdiParent = this
-            };
-            chargerControlForm.Show();
-        }
-
-        private void BatteryViewerToolStripMenuItem_Click(object sender, EventArgs e) {
-            BatteryViewerForm batteryViewerForm = new BatteryViewerForm() {
-                MdiParent = this
-            };
-            batteryViewerForm.Show();
-        }
 
         /*
         private void ConnectDisconnectToolStripMenuItem_Click(object sender, EventArgs e) {
