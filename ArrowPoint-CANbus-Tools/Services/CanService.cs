@@ -111,7 +111,7 @@ namespace ArrowPointCANBusTool.Services
             //StartBackgroundThreads();
 
             Boolean result = canConnection.Connect();
-            if (result) RequestConnectionStatusChange?.Invoke(true);
+            if (!result) RequestConnectionStatusChange?.Invoke(true);
             return result;
         }
 
