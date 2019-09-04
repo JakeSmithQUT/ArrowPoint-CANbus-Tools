@@ -132,7 +132,7 @@ namespace ArrowPointCANBusTool.Canbus
                     if (responseData != null && responseData != String.Empty)
                         finalChar = responseData[responseData.Length - 1];
 
-                    if (finalChar != '\n') {
+                    if (finalChar != '\r') {
                         Int32 bytes = 0;
 
                         try {
@@ -155,7 +155,7 @@ namespace ArrowPointCANBusTool.Canbus
                 }
 
                 // Close everything.
-                //stream?.Close();
+                stream?.Close();
 
                 Debug.WriteLine("ID: 2.7");
 
@@ -198,7 +198,7 @@ namespace ArrowPointCANBusTool.Canbus
         public int SendMessage(CanPacket canPacket)
         {
             // Put the real values in here
-            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
+            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
             return 1;
         }
     }
