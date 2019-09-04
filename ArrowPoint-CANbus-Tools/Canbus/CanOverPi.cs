@@ -132,7 +132,7 @@ namespace ArrowPointCANBusTool.Canbus
                     if (responseData != null && responseData != String.Empty)
                         finalChar = responseData[responseData.Length - 1];
 
-                    if (finalChar != '\r') {
+                    if (finalChar != '\n') {
                         Int32 bytes = 0;
 
                         try {
@@ -155,7 +155,7 @@ namespace ArrowPointCANBusTool.Canbus
                 }
 
                 // Close everything.
-                stream?.Close();
+                //stream?.Close();
 
                 Debug.WriteLine("ID: 2.7");
 
@@ -176,6 +176,8 @@ namespace ArrowPointCANBusTool.Canbus
                         return (ERROR_STR);
                     SocketCanInitialised = true;
                 }
+
+
 
                 Debug.WriteLine("ID: 2");
 

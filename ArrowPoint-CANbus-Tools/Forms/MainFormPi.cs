@@ -497,7 +497,20 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void Button1_Click(object sender, EventArgs e) {
+                         foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ConnectForm))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
 
+            ConnectForm settingsForm = new ConnectForm();
+            //settingsForm.MdiParent = this;
+            settingsForm.Show();
+
+            /*
             Boolean ipAddressParsed = IPAddress.TryParse("10.16.16.78", out IPAddress notUsedIpAddress);
             Boolean portParsed = Int32.TryParse("2953", out this.port);
             
@@ -520,7 +533,7 @@ namespace ArrowPointCANBusTool.Forms {
             //Console.WriteLine(CanService.Instance.AvailableInterfaces);
             //Consle.WriteLine();
             Console.WriteLine("sent");
-
+            */
         }
     }
 
