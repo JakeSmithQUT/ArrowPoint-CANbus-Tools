@@ -108,7 +108,7 @@ namespace ArrowPointCANBusTool.Services
 
         private Boolean PostConnect()
         {
-            StartBackgroundThreads();
+            //StartBackgroundThreads();
 
             Boolean result = canConnection.Connect();
             if (result) RequestConnectionStatusChange?.Invoke(true);
@@ -170,7 +170,7 @@ namespace ArrowPointCANBusTool.Services
         {
             LatestCanPacket.Clear();
         }
-
+        
         public void SetCanToSendAt10Hertz(CanPacket canPacket)
         {
             if (canOn10Hertz.ContainsKey(canPacket.CanId))
@@ -199,7 +199,7 @@ namespace ArrowPointCANBusTool.Services
                 canOn10Hertz.Remove(canId);
             }
         }
-
+        
         public bool IsPacketCurrent(uint canId, uint milliseconds)
         {
             CanPacket canPacket = LastestCanPacketById(canId);
@@ -293,6 +293,7 @@ namespace ArrowPointCANBusTool.Services
                     {
                         foreach (DictionaryEntry s in canOn10Hertz)
                         {
+                            Debug.Print("CanSenderLoopInner\n");
                             CanPacket canPacket = (CanPacket)s.Value;
                             canConnection.SendMessage(canPacket);
                         }

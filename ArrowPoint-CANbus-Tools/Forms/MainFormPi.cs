@@ -497,7 +497,7 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void Button1_Click(object sender, EventArgs e) {
-                         foreach (Form form in Application.OpenForms)
+            foreach (Form form in Application.OpenForms)
             {
                 if (form.GetType() == typeof(ConnectForm))
                 {

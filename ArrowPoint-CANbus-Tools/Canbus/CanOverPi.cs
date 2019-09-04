@@ -47,7 +47,7 @@ namespace ArrowPointCANBusTool.Canbus
             {
                 List<string> selectedInterfaces = new List<string>()
                 {
-                    { "Can0" }
+                    { "can0" }
                 };
                 return selectedInterfaces;
             }
