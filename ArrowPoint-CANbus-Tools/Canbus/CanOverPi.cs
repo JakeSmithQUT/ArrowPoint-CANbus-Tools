@@ -47,7 +47,7 @@ namespace ArrowPointCANBusTool.Canbus
             {
                 List<string> selectedInterfaces = new List<string>()
                 {
-                    { "can0" }
+                    { "Can0" }
                 };
                 return selectedInterfaces;
             }
@@ -177,8 +177,6 @@ namespace ArrowPointCANBusTool.Canbus
                     SocketCanInitialised = true;
                 }
 
-
-
                 Debug.WriteLine("ID: 2");
 
                 string response = SendMessageGetResponseInner(message);
@@ -198,7 +196,7 @@ namespace ArrowPointCANBusTool.Canbus
         public int SendMessage(CanPacket canPacket)
         {
             // Put the real values in here
-            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
+            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
             return 1;
         }
     }
