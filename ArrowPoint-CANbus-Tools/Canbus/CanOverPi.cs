@@ -216,5 +216,26 @@ namespace ArrowPointCANBusTool.Canbus
             if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
             return 1;
         }
+
+        // convert canpacket to socketcand command given socket and mode
+        public String canPacketToSocketCan(CanPacket input, String mode = "send")
+        {
+            StringBuilder str = new StringBuilder();
+            str.Append("< " + mode + " ");
+
+            str.Append(input.CanIdBase10.ToString() + " ");
+            str.Append("8 ");
+            str.Append(input.Byte0AsHex.ToString() + " ");
+            str.Append(input.Byte1AsHex.ToString() + " ");
+            str.Append(input.Byte2AsHex.ToString() + " ");
+            str.Append(input.Byte3AsHex.ToString() + " ");
+            str.Append(input.Byte4AsHex.ToString() + " ");
+            str.Append(input.Byte5AsHex.ToString() + " ");
+            str.Append(input.Byte6AsHex.ToString() + " ");
+            str.Append(input.Byte7AsHex.ToString() + " ");
+
+            str.Append(">");
+            return str.ToString();
+        }
     }
 }
