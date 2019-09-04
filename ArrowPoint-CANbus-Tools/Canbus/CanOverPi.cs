@@ -61,13 +61,30 @@ namespace ArrowPointCANBusTool.Canbus
 
         public bool Connect()
         {
-            isConnected = true;
+            isConnected = false;
+            if (!SocketCanInitialised)
+            {
+                String resp = SendMessageGetResponseInner("< open can0 >");
+                Debug.Print(resp);
+                if (resp.Equals(ERROR_STR)) {
+                    isConnected = false;
+                }
+                else if (resp.Equals("< hi >< ok >"))
+                {
+                    SocketCanInitialised = isConnected;
+                    isConnected = true;
+                }   
+            }            
             return isConnected;
         }
 
         public bool Disconnect()
         {
-            isConnected = false;
+            if (isConnected)
+            {
+                client.Close();
+                isConnected = false;
+            }
             return isConnected;
         }
 
@@ -155,7 +172,7 @@ namespace ArrowPointCANBusTool.Canbus
                 }
 
                 // Close everything.
-                stream?.Close();
+                //stream?.Close();
 
                 Debug.WriteLine("ID: 2.7");
 
