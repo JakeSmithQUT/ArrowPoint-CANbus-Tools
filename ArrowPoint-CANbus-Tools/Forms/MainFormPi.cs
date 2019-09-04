@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,7 +23,8 @@ namespace ArrowPointCANBusTool.Forms {
         private BatteryService batteryService;
         private Timer timer;
         private int activeBMUId = 0;
-
+        private String ipAddress = "10.16.16.78";
+        private int port = 29536;
 
 
         public MainFormPi() {
@@ -495,10 +497,15 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void Button1_Click(object sender, EventArgs e) {
+
+            Boolean ipAddressParsed = IPAddress.TryParse("10.16.16.78", out IPAddress notUsedIpAddress);
+            Boolean portParsed = Int32.TryParse("2953", out this.port);
+            
+            Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
+
             string samplePacket = "005472697469756d00be61fea90031010000050800080000000000000000";
             CanPacket canPacket = new CanPacket(samplePacket);
             CanService.Instance.Connect("10.11.12.13",29536);//29536
-
 
             int sent = CanService.Instance.SendMessage(canPacket);
 
