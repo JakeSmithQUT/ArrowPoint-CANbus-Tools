@@ -89,9 +89,33 @@ namespace ArrowPointCANBusTool.Forms {
             CMUdataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             TwelveVoltDataGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
 
+            // Connection Form
 
+            ipAddressTb.Text = this.ipAddress;
+            portTb.Text = this.port.ToString();
 
+            ipAddressTb.Enabled = false;
+            portTb.Enabled = false;
+            InterfaceCheckedListBox.Enabled = false;
 
+            Boolean isConnected = CanService.Instance.IsConnected();
+
+            this.connectBtn.Enabled = !isConnected;
+            this.disconnectBtn.Enabled = isConnected;
+            this.radioButton1.Enabled = !isConnected;
+            this.radioButton2.Enabled = !isConnected;
+
+            foreach (KeyValuePair<string, string> entry in CanService.Instance.AvailableInterfaces) {
+                IpDetails ipDetails = new IpDetails() {
+                    IpAddress = entry.Key,
+                    IpDescription = entry.Value
+                };
+
+                if (CanService.Instance.SelectedInterfaces != null && !CanService.Instance.SelectedInterfaces.Contains(ipDetails.IpAddress))
+                    InterfaceCheckedListBox.Items.Add(ipDetails, false);
+                else
+                    InterfaceCheckedListBox.Items.Add(ipDetails, true);
+            }
         }
 
 
@@ -134,80 +158,7 @@ namespace ArrowPointCANBusTool.Forms {
             settingsForm.Show();
         }
         */
-        private void SendPacketToolStripMenuItem_Click(object sender, EventArgs e) {
-            SendPacketForm endPacketForm = new SendPacketForm() {
-                MdiParent = this
-            };
-            endPacketForm.Show();
-        }
 
-        private void SendCanPacketsToolStripMenuItem_Click(object sender, EventArgs e) {
-            SendPacketForm sendPacketForm = new SendPacketForm() {
-                MdiParent = this
-            };
-            sendPacketForm.Show();
-        }
-
-        private void MotorControllerToolStripMenuItem_Click(object sender, EventArgs e) {
-            MotorControllerSimulatorForm motorControllerSimulatorForm = new MotorControllerSimulatorForm() {
-                MdiParent = this
-            };
-            motorControllerSimulatorForm.Show();
-        }
-
-        private void CanbusOverviewToolStripMenuItem_Click(object sender, EventArgs e) {
-            CanbusDashboardForm canbusDashboardForm = new CanbusDashboardForm(this.carData) {
-                MdiParent = this
-            };
-            canbusDashboardForm.Show();
-        }
-
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e) {
-            AboutBox aboutBox = new AboutBox {
-                MdiParent = this
-            };
-            aboutBox.Show();
-        }
-
-        private void DriverControllerToolStripMenuItem_Click(object sender, EventArgs e) {
-            DriverControllerSimulatorForm driverControllerSimulatorForm = new DriverControllerSimulatorForm() {
-                MdiParent = this
-            };
-            driverControllerSimulatorForm.Show();
-        }
-
-        private void DataLoggerToolStripMenuItem_Click(object sender, EventArgs e) {
-            DataLoggerForm dataLoggerForm = new DataLoggerForm() {
-                MdiParent = this
-            };
-            dataLoggerForm.Show();
-        }
-
-        private void LogReplayerToolStripMenuItem_Click(object sender, EventArgs e) {
-            DataLogReplayerForm dataLogReplayerForm = new DataLogReplayerForm() {
-                MdiParent = this
-            };
-            dataLogReplayerForm.Show();
-        }
-
-        /*
-        private void ConnectedStatusLabel_Click(object sender, EventArgs e) {
-            ShowConnectionForm();
-        }
-        */
-        private void BatteryChargerToolStripMenuItem_Click(object sender, EventArgs e) {
-            ChargerControlForm chargerControlForm = new ChargerControlForm() {
-                MdiParent = this
-            };
-            chargerControlForm.Show();
-        }
-
-        private void BatteryViewerToolStripMenuItem_Click(object sender, EventArgs e) {
-            BatteryViewerForm batteryViewerForm = new BatteryViewerForm() {
-                MdiParent = this
-            };
-            batteryViewerForm.Show();
-        }
 
         /*
         private void ConnectDisconnectToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -534,6 +485,78 @@ namespace ArrowPointCANBusTool.Forms {
             //Consle.WriteLine();
             Console.WriteLine("sent");
             */
+        }
+
+        private class IpDetails {
+            public string IpAddress { get; set; }
+            public string IpDescription { get; set; }
+            public override string ToString() {
+                return IpDescription;
+            }
+        }
+
+
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e) {
+            if (radioButton1.Checked) {
+                ipAddressTb.Enabled = true;
+                portTb.Enabled = true;
+                InterfaceCheckedListBox.Enabled = true;
+            }
+        }
+
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e) {
+            ipAddressTb.Enabled = false;
+            portTb.Enabled = false;
+            InterfaceCheckedListBox.Enabled = false;
+        }
+
+        private void ConnectBtn_Click_1(object sender, EventArgs e) {
+            Boolean ipAddressParsed = IPAddress.TryParse(this.ipAddressTb.Text, out IPAddress notUsedIpAddress);
+            Boolean portParsed = Int32.TryParse(this.portTb.Text, out this.port);
+
+            List<string> selectedInterfaces = new List<String>();
+
+            foreach (IpDetails ipDetails in InterfaceCheckedListBox.CheckedItems) {
+                selectedInterfaces.Add(ipDetails.IpAddress);
+            }
+
+            CanService.Instance.SelectedInterfaces = selectedInterfaces;
+
+            Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
+            Console.WriteLine(canServiceConnected);
+            Console.WriteLine(CanService.Instance.IsConnected());
+            if (ipAddressParsed && portParsed && canServiceConnected) {
+                this.connectBtn.Enabled = false;
+                this.disconnectBtn.Enabled = true;
+
+                this.ipAddressTb.Enabled = false;
+                this.portTb.Enabled = false;
+                this.radioButton1.Checked = false;
+                this.radioButton2.Checked = false;
+                this.radioButton1.Enabled = false;
+                this.radioButton2.Enabled = false;
+
+            } else if (!ipAddressParsed) {
+                MessageBox.Show("Failed to parse IP address.");
+            } else if (!portParsed) {
+                MessageBox.Show("Failed to parse port value. Port must be an integer");
+            } else {
+                MessageBox.Show("Failed to connect, this is likely caused by another tool already listening on the CanBus Port.");
+            }
+        }
+
+        private void DisconnectBtn_Click_1(object sender, EventArgs e) {
+            CanService.Instance.Disconnect();
+
+            this.connectBtn.Enabled = true;
+            this.disconnectBtn.Enabled = false;
+
+            this.ipAddressTb.Enabled = false;
+            this.portTb.Enabled = false;
+            this.radioButton1.Checked = false;
+            this.radioButton2.Checked = true;
+            this.radioButton1.Enabled = true;
+            this.radioButton2.Enabled = true;
         }
     }
 
