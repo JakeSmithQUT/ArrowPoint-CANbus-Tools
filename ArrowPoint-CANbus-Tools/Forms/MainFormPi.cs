@@ -448,28 +448,15 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void Button1_Click(object sender, EventArgs e) {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.GetType() == typeof(ConnectForm))
-                {
-                    form.Activate();
-                    return;
-                }
-            }
 
-            ConnectForm settingsForm = new ConnectForm();
-            //settingsForm.MdiParent = this;
-            settingsForm.Show();
-
-            /*
-            Boolean ipAddressParsed = IPAddress.TryParse("10.16.16.78", out IPAddress notUsedIpAddress);
-            Boolean portParsed = Int32.TryParse("2953", out this.port);
+            //Boolean ipAddressParsed = IPAddress.TryParse("10.16.16.78", out IPAddress notUsedIpAddress);
+            //Boolean portParsed = Int32.TryParse("2953", out this.port);
             
-            Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
+            //Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
 
             string samplePacket = "005472697469756d00be61fea90031010000050800080000000000000000";
-            CanPacket canPacket = new CanPacket(samplePacket);
-            CanService.Instance.Connect("10.11.12.13",29536);//29536
+            CanPacket canPacket = new CanPacket();
+           // CanService.Instance.Connect("10.11.12.13",29536);//29536
 
             int sent = CanService.Instance.SendMessage(canPacket);
 
@@ -484,7 +471,7 @@ namespace ArrowPointCANBusTool.Forms {
             //Console.WriteLine(CanService.Instance.AvailableInterfaces);
             //Consle.WriteLine();
             Console.WriteLine("sent");
-            */
+            
         }
 
         private class IpDetails {

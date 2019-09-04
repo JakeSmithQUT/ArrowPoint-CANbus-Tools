@@ -71,7 +71,7 @@ namespace ArrowPointCANBusTool.Canbus
                 }
                 else if (resp.Equals("< hi >< ok >"))
                 {
-                    SocketCanInitialised = isConnected;
+                    SocketCanInitialised = true;
                     isConnected = true;
                 }   
             }            
@@ -213,7 +213,7 @@ namespace ArrowPointCANBusTool.Canbus
         public int SendMessage(CanPacket canPacket)
         {
             // Put the real values in here
-            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
+            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
             return 1;
         }
     }
