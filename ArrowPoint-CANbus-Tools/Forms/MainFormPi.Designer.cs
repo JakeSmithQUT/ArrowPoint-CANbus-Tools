@@ -24,38 +24,38 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle129 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle130 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle131 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle132 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle133 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle134 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle135 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle136 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle137 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle138 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle139 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle140 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle141 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle142 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle143 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle144 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle145 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle146 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle147 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle148 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle149 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle150 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle151 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle152 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle153 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle154 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle155 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle156 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle157 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle158 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle159 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle160 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormPi));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -124,6 +124,8 @@
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.disconnectBtn = new System.Windows.Forms.Button();
+            this.connectBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.InterfaceCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -135,8 +137,17 @@
             this.ipAddressLbl = new System.Windows.Forms.Label();
             this.connectionLBL = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.disconnectBtn = new System.Windows.Forms.Button();
-            this.connectBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CANID = new System.Windows.Forms.TextBox();
+            this.NumOfBits = new System.Windows.Forms.TextBox();
+            this.Bit1 = new System.Windows.Forms.TextBox();
+            this.Bit2 = new System.Windows.Forms.TextBox();
+            this.Bit3 = new System.Windows.Forms.TextBox();
+            this.Bit4 = new System.Windows.Forms.TextBox();
+            this.Bit5 = new System.Windows.Forms.TextBox();
+            this.Bit6 = new System.Windows.Forms.TextBox();
+            this.Bit7 = new System.Windows.Forms.TextBox();
+            this.Bit8 = new System.Windows.Forms.TextBox();
             this.tabPage2.SuspendLayout();
             this.TwelveVoltSystem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TwelveVoltDataGridView)).BeginInit();
@@ -222,80 +233,80 @@
             // 
             // SerialNumber
             // 
-            dataGridViewCellStyle129.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.SerialNumber.DefaultCellStyle = dataGridViewCellStyle129;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.SerialNumber.DefaultCellStyle = dataGridViewCellStyle1;
             this.SerialNumber.HeaderText = "Serial Number";
             this.SerialNumber.Name = "SerialNumber";
             this.SerialNumber.ReadOnly = true;
             // 
             // CellTemp
             // 
-            dataGridViewCellStyle130.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.CellTemp.DefaultCellStyle = dataGridViewCellStyle130;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.CellTemp.DefaultCellStyle = dataGridViewCellStyle2;
             this.CellTemp.HeaderText = "Cell Temp C";
             this.CellTemp.Name = "CellTemp";
             this.CellTemp.ReadOnly = true;
             // 
             // Cell0mV
             // 
-            dataGridViewCellStyle131.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell0mV.DefaultCellStyle = dataGridViewCellStyle131;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell0mV.DefaultCellStyle = dataGridViewCellStyle3;
             this.Cell0mV.HeaderText = "Cell 0 mV";
             this.Cell0mV.Name = "Cell0mV";
             this.Cell0mV.ReadOnly = true;
             // 
             // Cell1mV
             // 
-            dataGridViewCellStyle132.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell1mV.DefaultCellStyle = dataGridViewCellStyle132;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell1mV.DefaultCellStyle = dataGridViewCellStyle4;
             this.Cell1mV.HeaderText = "Cell 1 mV";
             this.Cell1mV.Name = "Cell1mV";
             this.Cell1mV.ReadOnly = true;
             // 
             // Cell2mV
             // 
-            dataGridViewCellStyle133.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell2mV.DefaultCellStyle = dataGridViewCellStyle133;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell2mV.DefaultCellStyle = dataGridViewCellStyle5;
             this.Cell2mV.HeaderText = "Cell 2 mV";
             this.Cell2mV.Name = "Cell2mV";
             this.Cell2mV.ReadOnly = true;
             // 
             // Cell3mV
             // 
-            dataGridViewCellStyle134.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell3mV.DefaultCellStyle = dataGridViewCellStyle134;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell3mV.DefaultCellStyle = dataGridViewCellStyle6;
             this.Cell3mV.HeaderText = "Cell 3 mV";
             this.Cell3mV.Name = "Cell3mV";
             this.Cell3mV.ReadOnly = true;
             // 
             // Net12vCurrent
             // 
-            dataGridViewCellStyle135.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Net12vCurrent.DefaultCellStyle = dataGridViewCellStyle135;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Net12vCurrent.DefaultCellStyle = dataGridViewCellStyle7;
             this.Net12vCurrent.HeaderText = "Net 12V mA";
             this.Net12vCurrent.Name = "Net12vCurrent";
             this.Net12vCurrent.ReadOnly = true;
             // 
             // HVDc2DcCurrent
             // 
-            dataGridViewCellStyle136.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.HVDc2DcCurrent.DefaultCellStyle = dataGridViewCellStyle136;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.HVDc2DcCurrent.DefaultCellStyle = dataGridViewCellStyle8;
             this.HVDc2DcCurrent.HeaderText = "DC 2 DC mA";
             this.HVDc2DcCurrent.Name = "HVDc2DcCurrent";
             this.HVDc2DcCurrent.ReadOnly = true;
             // 
             // StatusFlags
             // 
-            dataGridViewCellStyle137.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.StatusFlags.DefaultCellStyle = dataGridViewCellStyle137;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.StatusFlags.DefaultCellStyle = dataGridViewCellStyle9;
             this.StatusFlags.HeaderText = "Status Flags";
             this.StatusFlags.Name = "StatusFlags";
             this.StatusFlags.ReadOnly = true;
             // 
             // StatusEvents
             // 
-            dataGridViewCellStyle138.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.StatusEvents.DefaultCellStyle = dataGridViewCellStyle138;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.StatusEvents.DefaultCellStyle = dataGridViewCellStyle10;
             this.StatusEvents.HeaderText = "Status Events";
             this.StatusEvents.Name = "StatusEvents";
             this.StatusEvents.ReadOnly = true;
@@ -322,14 +333,14 @@
             this.CMUdataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CMUdataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CMUdataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle139.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle139.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle139.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle139.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle139.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle139.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle139.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CMUdataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle139;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CMUdataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.CMUdataGridView.ColumnHeadersHeight = 22;
             this.CMUdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CellNumber,
@@ -361,8 +372,8 @@
             // 
             // CellNumber
             // 
-            dataGridViewCellStyle140.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.CellNumber.DefaultCellStyle = dataGridViewCellStyle140;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.CellNumber.DefaultCellStyle = dataGridViewCellStyle12;
             this.CellNumber.HeaderText = "";
             this.CellNumber.Name = "CellNumber";
             this.CellNumber.ReadOnly = true;
@@ -378,8 +389,8 @@
             // PCBTemperature
             // 
             this.PCBTemperature.DataPropertyName = "PCBTemp";
-            dataGridViewCellStyle141.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.PCBTemperature.DefaultCellStyle = dataGridViewCellStyle141;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.PCBTemperature.DefaultCellStyle = dataGridViewCellStyle13;
             this.PCBTemperature.HeaderText = "PCB (C)";
             this.PCBTemperature.Name = "PCBTemperature";
             this.PCBTemperature.ReadOnly = true;
@@ -388,8 +399,8 @@
             // CellTemperature
             // 
             this.CellTemperature.DataPropertyName = "CellTemp";
-            dataGridViewCellStyle142.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.CellTemperature.DefaultCellStyle = dataGridViewCellStyle142;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.CellTemperature.DefaultCellStyle = dataGridViewCellStyle14;
             this.CellTemperature.HeaderText = "Cell (C)";
             this.CellTemperature.Name = "CellTemperature";
             this.CellTemperature.ReadOnly = true;
@@ -398,9 +409,9 @@
             // CellVoltage0
             // 
             this.CellVoltage0.DataPropertyName = "Cell0mV";
-            dataGridViewCellStyle143.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            dataGridViewCellStyle143.NullValue = null;
-            this.CellVoltage0.DefaultCellStyle = dataGridViewCellStyle143;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            dataGridViewCellStyle15.NullValue = null;
+            this.CellVoltage0.DefaultCellStyle = dataGridViewCellStyle15;
             this.CellVoltage0.HeaderText = "C0 mV";
             this.CellVoltage0.Name = "CellVoltage0";
             this.CellVoltage0.ReadOnly = true;
@@ -409,8 +420,8 @@
             // Cell1Voltage
             // 
             this.Cell1Voltage.DataPropertyName = "Cell1mV";
-            dataGridViewCellStyle144.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell1Voltage.DefaultCellStyle = dataGridViewCellStyle144;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell1Voltage.DefaultCellStyle = dataGridViewCellStyle16;
             this.Cell1Voltage.HeaderText = "C1 mV";
             this.Cell1Voltage.Name = "Cell1Voltage";
             this.Cell1Voltage.ReadOnly = true;
@@ -419,8 +430,8 @@
             // Cell2Voltage
             // 
             this.Cell2Voltage.DataPropertyName = "Cell2mV";
-            dataGridViewCellStyle145.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell2Voltage.DefaultCellStyle = dataGridViewCellStyle145;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell2Voltage.DefaultCellStyle = dataGridViewCellStyle17;
             this.Cell2Voltage.HeaderText = "C2 mV";
             this.Cell2Voltage.Name = "Cell2Voltage";
             this.Cell2Voltage.ReadOnly = true;
@@ -429,8 +440,8 @@
             // Cell3Voltage
             // 
             this.Cell3Voltage.DataPropertyName = "Cell3mV";
-            dataGridViewCellStyle146.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell3Voltage.DefaultCellStyle = dataGridViewCellStyle146;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell3Voltage.DefaultCellStyle = dataGridViewCellStyle18;
             this.Cell3Voltage.HeaderText = "C3 mV";
             this.Cell3Voltage.Name = "Cell3Voltage";
             this.Cell3Voltage.ReadOnly = true;
@@ -439,8 +450,8 @@
             // Cell4Voltage
             // 
             this.Cell4Voltage.DataPropertyName = "Cell4mV";
-            dataGridViewCellStyle147.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell4Voltage.DefaultCellStyle = dataGridViewCellStyle147;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell4Voltage.DefaultCellStyle = dataGridViewCellStyle19;
             this.Cell4Voltage.HeaderText = "C4 mV";
             this.Cell4Voltage.Name = "Cell4Voltage";
             this.Cell4Voltage.ReadOnly = true;
@@ -449,8 +460,8 @@
             // Cell5Voltage
             // 
             this.Cell5Voltage.DataPropertyName = "Cell5mV";
-            dataGridViewCellStyle148.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell5Voltage.DefaultCellStyle = dataGridViewCellStyle148;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell5Voltage.DefaultCellStyle = dataGridViewCellStyle20;
             this.Cell5Voltage.HeaderText = "C5 mV";
             this.Cell5Voltage.Name = "Cell5Voltage";
             this.Cell5Voltage.ReadOnly = true;
@@ -459,8 +470,8 @@
             // Cell6Voltage
             // 
             this.Cell6Voltage.DataPropertyName = "Cell6mV";
-            dataGridViewCellStyle149.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell6Voltage.DefaultCellStyle = dataGridViewCellStyle149;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell6Voltage.DefaultCellStyle = dataGridViewCellStyle21;
             this.Cell6Voltage.HeaderText = "C6 mV";
             this.Cell6Voltage.Name = "Cell6Voltage";
             this.Cell6Voltage.ReadOnly = true;
@@ -469,8 +480,8 @@
             // Cell7Voltage
             // 
             this.Cell7Voltage.DataPropertyName = "Cell7mV";
-            dataGridViewCellStyle150.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Cell7Voltage.DefaultCellStyle = dataGridViewCellStyle150;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Cell7Voltage.DefaultCellStyle = dataGridViewCellStyle22;
             this.Cell7Voltage.HeaderText = "C7 mV";
             this.Cell7Voltage.Name = "Cell7Voltage";
             this.Cell7Voltage.ReadOnly = true;
@@ -519,16 +530,16 @@
             // 
             // header
             // 
-            dataGridViewCellStyle151.BackColor = System.Drawing.SystemColors.Control;
-            this.header.DefaultCellStyle = dataGridViewCellStyle151;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            this.header.DefaultCellStyle = dataGridViewCellStyle23;
             this.header.HeaderText = "";
             this.header.Name = "header";
             this.header.ReadOnly = true;
             // 
             // MinmV
             // 
-            dataGridViewCellStyle152.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MinmV.DefaultCellStyle = dataGridViewCellStyle152;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinmV.DefaultCellStyle = dataGridViewCellStyle24;
             this.MinmV.HeaderText = "Min mV";
             this.MinmV.Name = "MinmV";
             this.MinmV.ReadOnly = true;
@@ -536,8 +547,8 @@
             // 
             // Max_mV
             // 
-            dataGridViewCellStyle153.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Max_mV.DefaultCellStyle = dataGridViewCellStyle153;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Max_mV.DefaultCellStyle = dataGridViewCellStyle25;
             this.Max_mV.HeaderText = "Max mV";
             this.Max_mV.Name = "Max_mV";
             this.Max_mV.ReadOnly = true;
@@ -545,8 +556,8 @@
             // 
             // Min_C
             // 
-            dataGridViewCellStyle154.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Min_C.DefaultCellStyle = dataGridViewCellStyle154;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Min_C.DefaultCellStyle = dataGridViewCellStyle26;
             this.Min_C.HeaderText = "Min C";
             this.Min_C.Name = "Min_C";
             this.Min_C.ReadOnly = true;
@@ -554,8 +565,8 @@
             // 
             // Max_C
             // 
-            dataGridViewCellStyle155.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Max_C.DefaultCellStyle = dataGridViewCellStyle155;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Max_C.DefaultCellStyle = dataGridViewCellStyle27;
             this.Max_C.HeaderText = "Max C";
             this.Max_C.Name = "Max_C";
             this.Max_C.ReadOnly = true;
@@ -563,8 +574,8 @@
             // 
             // Pack_mV
             // 
-            dataGridViewCellStyle156.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Pack_mV.DefaultCellStyle = dataGridViewCellStyle156;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Pack_mV.DefaultCellStyle = dataGridViewCellStyle28;
             this.Pack_mV.HeaderText = "Pack mV";
             this.Pack_mV.Name = "Pack_mV";
             this.Pack_mV.ReadOnly = true;
@@ -572,8 +583,8 @@
             // 
             // Pack_mA
             // 
-            dataGridViewCellStyle157.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.Pack_mA.DefaultCellStyle = dataGridViewCellStyle157;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.Pack_mA.DefaultCellStyle = dataGridViewCellStyle29;
             this.Pack_mA.HeaderText = "Pack mA";
             this.Pack_mA.Name = "Pack_mA";
             this.Pack_mA.ReadOnly = true;
@@ -581,8 +592,8 @@
             // 
             // BalancePositive
             // 
-            dataGridViewCellStyle158.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.BalancePositive.DefaultCellStyle = dataGridViewCellStyle158;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.BalancePositive.DefaultCellStyle = dataGridViewCellStyle30;
             this.BalancePositive.HeaderText = "Balance +";
             this.BalancePositive.Name = "BalancePositive";
             this.BalancePositive.ReadOnly = true;
@@ -590,8 +601,8 @@
             // 
             // BalanceNegative
             // 
-            dataGridViewCellStyle159.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.BalanceNegative.DefaultCellStyle = dataGridViewCellStyle159;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.BalanceNegative.DefaultCellStyle = dataGridViewCellStyle31;
             this.BalanceNegative.HeaderText = "Balance -";
             this.BalanceNegative.Name = "BalanceNegative";
             this.BalanceNegative.ReadOnly = true;
@@ -599,8 +610,8 @@
             // 
             // CMU_Count
             // 
-            dataGridViewCellStyle160.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            this.CMU_Count.DefaultCellStyle = dataGridViewCellStyle160;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            this.CMU_Count.DefaultCellStyle = dataGridViewCellStyle32;
             this.CMU_Count.HeaderText = "CMU Count";
             this.CMU_Count.Name = "CMU_Count";
             this.CMU_Count.ReadOnly = true;
@@ -946,6 +957,16 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Bit8);
+            this.tabPage1.Controls.Add(this.Bit7);
+            this.tabPage1.Controls.Add(this.Bit6);
+            this.tabPage1.Controls.Add(this.Bit5);
+            this.tabPage1.Controls.Add(this.Bit4);
+            this.tabPage1.Controls.Add(this.Bit3);
+            this.tabPage1.Controls.Add(this.Bit2);
+            this.tabPage1.Controls.Add(this.Bit1);
+            this.tabPage1.Controls.Add(this.NumOfBits);
+            this.tabPage1.Controls.Add(this.CANID);
             this.tabPage1.Controls.Add(this.disconnectBtn);
             this.tabPage1.Controls.Add(this.connectBtn);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -957,6 +978,28 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // disconnectBtn
+            // 
+            this.disconnectBtn.Location = new System.Drawing.Point(488, 244);
+            this.disconnectBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.disconnectBtn.Name = "disconnectBtn";
+            this.disconnectBtn.Size = new System.Drawing.Size(166, 56);
+            this.disconnectBtn.TabIndex = 6;
+            this.disconnectBtn.Text = "Disconnect";
+            this.disconnectBtn.UseVisualStyleBackColor = true;
+            this.disconnectBtn.Click += new System.EventHandler(this.DisconnectBtn_Click_1);
+            // 
+            // connectBtn
+            // 
+            this.connectBtn.Location = new System.Drawing.Point(300, 244);
+            this.connectBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.connectBtn.Name = "connectBtn";
+            this.connectBtn.Size = new System.Drawing.Size(168, 56);
+            this.connectBtn.TabIndex = 5;
+            this.connectBtn.Text = "Connect";
+            this.connectBtn.UseVisualStyleBackColor = true;
+            this.connectBtn.Click += new System.EventHandler(this.ConnectBtn_Click_1);
             // 
             // groupBox1
             // 
@@ -1057,7 +1100,7 @@
             // connectionLBL
             // 
             this.connectionLBL.AutoSize = true;
-            this.connectionLBL.Location = new System.Drawing.Point(115, 99);
+            this.connectionLBL.Location = new System.Drawing.Point(232, 266);
             this.connectionLBL.Name = "connectionLBL";
             this.connectionLBL.Size = new System.Drawing.Size(14, 13);
             this.connectionLBL.TabIndex = 1;
@@ -1065,35 +1108,89 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(67, 127);
+            this.button1.Location = new System.Drawing.Point(37, 279);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 49);
+            this.button1.Size = new System.Drawing.Size(162, 31);
             this.button1.TabIndex = 0;
             this.button1.Text = "Send Can Packet";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // disconnectBtn
+            // contextMenuStrip1
             // 
-            this.disconnectBtn.Location = new System.Drawing.Point(488, 244);
-            this.disconnectBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.disconnectBtn.Name = "disconnectBtn";
-            this.disconnectBtn.Size = new System.Drawing.Size(166, 56);
-            this.disconnectBtn.TabIndex = 6;
-            this.disconnectBtn.Text = "Disconnect";
-            this.disconnectBtn.UseVisualStyleBackColor = true;
-            this.disconnectBtn.Click += new System.EventHandler(this.DisconnectBtn_Click_1);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // connectBtn
+            // CANID
             // 
-            this.connectBtn.Location = new System.Drawing.Point(300, 244);
-            this.connectBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.connectBtn.Name = "connectBtn";
-            this.connectBtn.Size = new System.Drawing.Size(168, 56);
-            this.connectBtn.TabIndex = 5;
-            this.connectBtn.Text = "Connect";
-            this.connectBtn.UseVisualStyleBackColor = true;
-            this.connectBtn.Click += new System.EventHandler(this.ConnectBtn_Click_1);
+            this.CANID.Location = new System.Drawing.Point(98, 13);
+            this.CANID.Name = "CANID";
+            this.CANID.Size = new System.Drawing.Size(37, 20);
+            this.CANID.TabIndex = 7;
+            // 
+            // NumOfBits
+            // 
+            this.NumOfBits.Location = new System.Drawing.Point(98, 39);
+            this.NumOfBits.Name = "NumOfBits";
+            this.NumOfBits.Size = new System.Drawing.Size(37, 20);
+            this.NumOfBits.TabIndex = 8;
+            this.NumOfBits.Text = "8";
+            // 
+            // Bit1
+            // 
+            this.Bit1.Location = new System.Drawing.Point(98, 65);
+            this.Bit1.Name = "Bit1";
+            this.Bit1.Size = new System.Drawing.Size(37, 20);
+            this.Bit1.TabIndex = 9;
+            // 
+            // Bit2
+            // 
+            this.Bit2.Location = new System.Drawing.Point(98, 91);
+            this.Bit2.Name = "Bit2";
+            this.Bit2.Size = new System.Drawing.Size(37, 20);
+            this.Bit2.TabIndex = 10;
+            // 
+            // Bit3
+            // 
+            this.Bit3.Location = new System.Drawing.Point(98, 117);
+            this.Bit3.Name = "Bit3";
+            this.Bit3.Size = new System.Drawing.Size(37, 20);
+            this.Bit3.TabIndex = 11;
+            // 
+            // Bit4
+            // 
+            this.Bit4.Location = new System.Drawing.Point(98, 143);
+            this.Bit4.Name = "Bit4";
+            this.Bit4.Size = new System.Drawing.Size(37, 20);
+            this.Bit4.TabIndex = 12;
+            // 
+            // Bit5
+            // 
+            this.Bit5.Location = new System.Drawing.Point(98, 169);
+            this.Bit5.Name = "Bit5";
+            this.Bit5.Size = new System.Drawing.Size(37, 20);
+            this.Bit5.TabIndex = 13;
+            // 
+            // Bit6
+            // 
+            this.Bit6.Location = new System.Drawing.Point(98, 195);
+            this.Bit6.Name = "Bit6";
+            this.Bit6.Size = new System.Drawing.Size(37, 20);
+            this.Bit6.TabIndex = 14;
+            // 
+            // Bit7
+            // 
+            this.Bit7.Location = new System.Drawing.Point(98, 221);
+            this.Bit7.Name = "Bit7";
+            this.Bit7.Size = new System.Drawing.Size(37, 20);
+            this.Bit7.TabIndex = 15;
+            // 
+            // Bit8
+            // 
+            this.Bit8.Location = new System.Drawing.Point(98, 247);
+            this.Bit8.Name = "Bit8";
+            this.Bit8.Size = new System.Drawing.Size(37, 20);
+            this.Bit8.TabIndex = 16;
             // 
             // MainFormPi
             // 
@@ -1206,5 +1303,16 @@
         private System.Windows.Forms.Label ipAddressLbl;
         private System.Windows.Forms.Button disconnectBtn;
         private System.Windows.Forms.Button connectBtn;
+        private System.Windows.Forms.TextBox Bit8;
+        private System.Windows.Forms.TextBox Bit7;
+        private System.Windows.Forms.TextBox Bit6;
+        private System.Windows.Forms.TextBox Bit5;
+        private System.Windows.Forms.TextBox Bit4;
+        private System.Windows.Forms.TextBox Bit3;
+        private System.Windows.Forms.TextBox Bit2;
+        private System.Windows.Forms.TextBox Bit1;
+        private System.Windows.Forms.TextBox NumOfBits;
+        private System.Windows.Forms.TextBox CANID;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

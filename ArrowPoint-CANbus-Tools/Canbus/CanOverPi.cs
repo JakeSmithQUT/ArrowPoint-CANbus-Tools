@@ -212,8 +212,9 @@ namespace ArrowPointCANBusTool.Canbus
 
         public int SendMessage(CanPacket canPacket)
         {
+
             // Put the real values in here
-            if (SendMessageGetResponse("< send 401 8 00 00 00 00 00 00 00 00 >").Equals(ERROR_STR)) return 0;
+            if (SendMessageGetResponse(canPacketToSocketCan(canPacket)).Equals(ERROR_STR)) return 0;
             return 1;
         }
 
@@ -225,14 +226,14 @@ namespace ArrowPointCANBusTool.Canbus
 
             str.Append(input.CanIdBase10.ToString() + " ");
             str.Append("8 ");
-            str.Append(input.Byte0AsHex.ToString() + " ");
-            str.Append(input.Byte1AsHex.ToString() + " ");
-            str.Append(input.Byte2AsHex.ToString() + " ");
-            str.Append(input.Byte3AsHex.ToString() + " ");
-            str.Append(input.Byte4AsHex.ToString() + " ");
-            str.Append(input.Byte5AsHex.ToString() + " ");
-            str.Append(input.Byte6AsHex.ToString() + " ");
-            str.Append(input.Byte7AsHex.ToString() + " ");
+            str.Append(input.Byte0.ToString() + " ");
+            str.Append(input.Byte1.ToString() + " ");
+            str.Append(input.Byte2.ToString() + " ");
+            str.Append(input.Byte3.ToString() + " ");
+            str.Append(input.Byte4.ToString() + " ");
+            str.Append(input.Byte5.ToString() + " ");
+            str.Append(input.Byte6.ToString() + " ");
+            str.Append(input.Byte7.ToString() + " ");
 
             str.Append(">");
             return str.ToString();

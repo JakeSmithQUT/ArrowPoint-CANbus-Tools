@@ -451,14 +451,28 @@ namespace ArrowPointCANBusTool.Forms {
 
             //Boolean ipAddressParsed = IPAddress.TryParse("10.16.16.78", out IPAddress notUsedIpAddress);
             //Boolean portParsed = Int32.TryParse("2953", out this.port);
-            
+
             //Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
 
-            string samplePacket = "005472697469756d00be61fea90031010000050800080000000000000000";
-            CanPacket canPacket = new CanPacket();
+            string samplePacket = CANID.Text+NumOfBits.Text+Bit1.Text+Bit2.Text+Bit3.Text+Bit4.Text+Bit5.Text+Bit6.Text+Bit7.Text+Bit8.Text;
+            CanPacket sendTest = new CanPacket(Convert.ToUInt16(CANID.Text, 10));
+            //sendTest.CanId = Convert.ToUInt16(CANID.Text, 16);
+            sendTest.SetByte(0, Convert.ToByte(Bit1.Text));
+            sendTest.SetByte(1, Convert.ToByte(Bit2.Text));
+            sendTest.SetByte(2, Convert.ToByte(Bit3.Text));
+            sendTest.SetByte(3, Convert.ToByte(Bit4.Text));
+            sendTest.SetByte(4, Convert.ToByte(Bit5.Text));
+            sendTest.SetByte(5, Convert.ToByte(Bit6.Text));
+            sendTest.SetByte(6, Convert.ToByte(Bit7.Text));
+            sendTest.SetByte(7, Convert.ToByte(Bit8.Text));
+
+
+            //string samplePacket = "12381122334455667788";
+            //CanPacket canPacket = new CanPacket(sampleTest);
+            //Debug.Print()
            // CanService.Instance.Connect("10.11.12.13",29536);//29536
 
-            int sent = CanService.Instance.SendMessage(canPacket);
+            int sent = CanService.Instance.SendMessage(sendTest);
 
             if (CanService.Instance.IsConnected() == false) {
                 connectionLBL.Text = "Not Connected";
