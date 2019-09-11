@@ -36,6 +36,7 @@ namespace ArrowPointCANBusTool.Services
         private Hashtable canOn10Hertz = new Hashtable();        
 
         private Boolean sendImmediateMode = false;
+        private Boolean pi = false;
 
         static CanService()
         {
@@ -71,7 +72,15 @@ namespace ArrowPointCANBusTool.Services
             };
             sendImmediateMode = true;
             return PostConnect();
-        }    
+        }
+
+        public Boolean ConnectViaPiIPDefaults() {
+            String ipAddress = "10.16.16.78";
+            int port = 29536;
+            pi = true;
+
+            return Connect(ipAddress, port);
+        }
 
         public Boolean ConnectViaIPDefaults()
         {
@@ -96,6 +105,7 @@ namespace ArrowPointCANBusTool.Services
 
 
         public Boolean ConnectOverSocketCan(string ip, int port) {
+            pi = true;
             CanOverPi piCanConnection = new CanOverPi() {
                 Ip = ip,
                 Port = port,
