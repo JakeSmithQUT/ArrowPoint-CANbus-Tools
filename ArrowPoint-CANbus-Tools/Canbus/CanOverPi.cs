@@ -217,10 +217,11 @@ namespace ArrowPointCANBusTool.Canbus
                         delayed += 10;
                     }
 
-
+                    // remove all newlines, returns, and > characters
                     if (rawResponseData != String.Empty) {
                         rawResponseData = rawResponseData.Replace("\r\n", string.Empty);
                         rawResponseData = rawResponseData.Replace("\r", string.Empty);
+                        rawResponseData = rawResponseData.Replace(">", string.Empty);
                     }
 
 
@@ -230,27 +231,40 @@ namespace ArrowPointCANBusTool.Canbus
                      * 
                      * 
 
+                    */
 
 
 
-                     /* if (CheckIfTritiumDatagram(data)) {
-                          SplitCanPackets(data, sourceAddress, port);
-                      } */
 
+                    /* if (CheckIfTritiumDatagram(data)) {
+                         SplitCanPackets(data, sourceAddress, port);
+                     } */
 
+                    String[] packets = rawResponseData.Split('<');
 
+                    // convert each string to a canpacket and invoke callback
+                    foreach (String s in packets) {
+                        try {
+                            CanPacket p = rawInputToCan(s);
+                            ReceivedCanPacketCallBack?.Invoke(p);
+                        }
+                        catch
+                        {
+                            Debug.Print("Failed callback for some reason");
+                        }
+                    }
                     // Parse the content that you get Here
 
-                    CanPacket canPacket = new CanPacket((uint)302);
+                    //CanPacket canPacket = new CanPacket((uint)302);
 
                     // Parse the string that comes back
 
-                    
+                    /*
 
                     canPacket.SetByte(0, 0);
                     canPacket.SetByte(1, 0);
 
-                    ReceivedCanPacketCallBack?.Invoke(canPacket);
+                    ReceivedCanPacketCallBack?.Invoke(canPacket);*/
 
                 } catch {
                     Disconnect();
@@ -402,6 +416,19 @@ namespace ArrowPointCANBusTool.Canbus
 
             str.Append(">");
             return str.ToString();
+        }
+
+        // converts string in the format "frame can_id receive_time raw_bytes" as in socketcand rawmode (with < and > removed)
+        public CanPacket rawInputToCan(String input)
+        {
+            input = input.Trim();
+            String[] vals = input.Split(' ');
+            String rawCanId = vals[1] ;
+            String rawBytesString = vals[3]; // populate with the frame's bytestring
+            CanPacket output = new CanPacket(rawBytesString);
+            output.CanId = Convert.ToUInt32(rawCanId);
+
+            return output;
         }
     }
 }
