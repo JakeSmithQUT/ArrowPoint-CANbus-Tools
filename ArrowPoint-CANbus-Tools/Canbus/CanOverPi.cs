@@ -18,7 +18,9 @@ namespace ArrowPointCANBusTool.Canbus
         private static readonly Object comms_locker = new Object();
 
         private TcpClient client = null;
+        private TcpClient receiver = null;
 
+        private Thread CanReceiverThread;
         private bool SocketCanInitialised = false;
 
         private const String DEFAULT_IPADDRESS = "10.16.16.78";
@@ -91,6 +93,169 @@ namespace ArrowPointCANBusTool.Canbus
         public bool IsConnected()
         {
             return isConnected;
+        }
+
+
+
+        private Boolean StartReceiver() {
+            try {
+
+                // Create a socket connection, completely seperate to the other one
+
+                /*
+                 * 
+                 *   client = new TcpClient {
+                        ReceiveTimeout = 500
+                    };
+                    client.ConnectAsync(Ip, Port).Wait(500);
+
+                  Use this connection to < hi > and switch to raw mode
+
+                Down this connection, now comes everthing 
+                */
+
+                NetworkStream stream = null;
+
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes("< open can0 >< rawmode >" + "\r\n");
+                if (receiver == null || receiver.Connected == false) {
+                    receiver = new TcpClient {
+                        ReceiveTimeout = 500
+                    };
+                    receiver.Connect(Ip, Port);
+                }
+
+                // if (client == null || client.Connected == false) return (ERROR_STR);
+                stream = receiver.GetStream();
+                // Send the message to the connected TcpServer. 
+                stream.Write(data, 0, data.Length);
+                // Receive the TcpServer.response.
+                // Buffer to store the response bytes.
+                data = new Byte[256];
+                // String to store the response ASCII representation.
+                String responseData = String.Empty;
+
+                int delayed = 0;
+                // Read the first batch of the TcpServer response bytes.
+                while (delayed < 1000) {
+                    char finalChar = ' ';
+
+                    if (responseData != null && responseData != String.Empty)
+                        finalChar = responseData[responseData.Length - 1];
+
+                    if (finalChar != '\r') {
+                        Int32 bytes = 0;
+                        try {
+                            bytes = stream.Read(data, 0, data.Length);
+                            responseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                        } catch {
+                            // Read error, lets leave the loop
+                            break;
+                        }
+                    } else break;
+                    Thread.Sleep(10);
+                    delayed += 10;
+                }
+
+                if (responseData != String.Empty) {
+                    responseData = responseData.Replace("\r\n", string.Empty);
+                    responseData = responseData.Replace("\r", string.Empty);
+                }
+
+                if (responseData == "< hi >< ok >< ok >") { // MIGHT NEED TO REMOVE < hi > 
+                    Debug.WriteLine("Connected");
+                }
+
+                //if (!SendMessageGetResponseInner("< open can0 >").Equals("< hi >< ok >"))
+                //    return (ERROR_STR);
+                //    SocketCanInitialised = true;
+                //}
+
+                CanReceiverThread = new Thread(CanReceiverLoop);
+                CanReceiverThread.Start();
+            } catch {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void StopReceiver() {
+            try {
+
+                // Terminte the connection you made above
+
+                CanReceiverThread.Abort();
+            } catch { };
+        }
+
+        private void CanReceiverLoop() {
+            while (this.isConnected) {
+                try {
+
+                    Byte[] data = new Byte[256];
+                    // String to store the response ASCII representation.
+                    String rawResponseData = String.Empty;
+                    int delayed = 0;
+                    // Read the first batch of the TcpServer response bytes.
+                    while (delayed < 1000) {
+                        char finalChar = ' ';
+
+                        if (rawResponseData != null && rawResponseData != String.Empty)
+                            finalChar = rawResponseData[rawResponseData.Length - 1];
+
+                        if (finalChar != '\r') {
+                            Int32 bytes = 0;
+                            try {
+                                bytes = receiver.GetStream().Read(data, 0, data.Length);
+                                rawResponseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                            } catch {
+                                // Read error, lets leave the loop
+                                break;
+                            }
+                        } else break;
+                        Thread.Sleep(10);
+                        delayed += 10;
+                    }
+
+
+                    if (rawResponseData != String.Empty) {
+                        rawResponseData = rawResponseData.Replace("\r\n", string.Empty);
+                        rawResponseData = rawResponseData.Replace("\r", string.Empty);
+                    }
+
+
+                    /* read whatever is coming down that connection
+                     * 
+                     * Make a canpacket from it
+                     * 
+                     * 
+
+
+
+
+                     /* if (CheckIfTritiumDatagram(data)) {
+                          SplitCanPackets(data, sourceAddress, port);
+                      } */
+
+
+
+                    // Parse the content that you get Here
+
+                    CanPacket canPacket = new CanPacket((uint)302);
+
+                    // Parse the string that comes back
+
+                    
+
+                    canPacket.SetByte(0, 0);
+                    canPacket.SetByte(1, 0);
+
+                    ReceivedCanPacketCallBack?.Invoke(canPacket);
+
+                } catch {
+                    Disconnect();
+                }
+            }
         }
 
         private string SendMessageGetResponseInner(String message) {
