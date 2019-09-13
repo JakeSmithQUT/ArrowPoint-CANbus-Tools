@@ -165,7 +165,7 @@ namespace ArrowPointCANBusTool.Canbus
                     responseData = responseData.Replace("\r", string.Empty);
                 }
 
-                if (responseData == "< hi >< ok >< ok >") { // MIGHT NEED TO REMOVE < hi > 
+                if (responseData == "< ok >< ok >") { // MIGHT NEED TO REMOVE < hi > 
                     Debug.WriteLine("Connected");
                 }
 
@@ -195,7 +195,6 @@ namespace ArrowPointCANBusTool.Canbus
         private void CanReceiverLoop() {
             while (this.isConnected) {
                 try {
-
                     Byte[] data = new Byte[256];
                     // String to store the response ASCII representation.
                     String rawResponseData = String.Empty;
@@ -214,6 +213,7 @@ namespace ArrowPointCANBusTool.Canbus
                                 rawResponseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
                             } catch {
                                 // Read error, lets leave the loop
+                                Debug.Print("Read error in CanReceiverLoop");
                                 break;
                             }
                         } else break;
@@ -241,34 +241,31 @@ namespace ArrowPointCANBusTool.Canbus
                          SplitCanPackets(data, sourceAddress, port);
                      } */
 
-                    String[] packets = rawResponseData.Split('<');
+                    String[] packets = rawResponseData.Trim().Split('<');
 
                     // convert each string to a canpacket and invoke callback
-                    foreach (String s in packets) {
-                        
-                        //try {
-                            CanPacket p = rawInputToCan(s);
-                            Debug.Print("she good?");
-                            ReceivedCanPacketCallBack?.Invoke(p);
-                            Debug.Print("She Good cuz");
-                        /*}
-                        catch {
-                            Debug.Print(s);
-                            Debug.Print("Failed callback for some reason");
-                        } */
+                    if (packets.Length > 1)
+                    {
+                        foreach (String s in packets)
+                        {
+                            try
+                            {
+                                if (!s.Equals(""))
+                                {
+                                    CanPacket p = rawInputToCan(s);
+                                    if (p != null && p.CanId != 0)
+                                    {
+                                        ReceivedCanPacketCallBack?.Invoke(p);
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                Debug.Print("Failed callback for some reason");
+                            }
+
+                        }
                     }
-                    // Parse the content that you get Here
-
-                    //CanPacket canPacket = new CanPacket((uint)302);
-
-                    // Parse the string that comes back
-
-                    /*
-
-                    canPacket.SetByte(0, 0);
-                    canPacket.SetByte(1, 0);
-
-                    ReceivedCanPacketCallBack?.Invoke(canPacket);*/
 
                 } catch {
                     Debug.Print("Cole stinks");
@@ -356,7 +353,7 @@ namespace ArrowPointCANBusTool.Canbus
                 }
 
                 // Close everything.
-                //stream?.Close();
+                stream?.Close();
 
                 Debug.WriteLine("ID: 2.7");
 
@@ -396,7 +393,6 @@ namespace ArrowPointCANBusTool.Canbus
 
         public int SendMessage(CanPacket canPacket)
         {
-
             // Put the real values in here
             if (SendMessageGetResponse(canPacketToSocketCan(canPacket)).Equals(ERROR_STR)) return 0;
             return 1;
@@ -408,7 +404,7 @@ namespace ArrowPointCANBusTool.Canbus
             StringBuilder str = new StringBuilder();
             str.Append("< " + mode + " ");
 
-            str.Append(input.CanIdBase10.ToString() + " ");
+            str.Append(input.CanIdAsHex.ToString() + " ");
             str.Append("8 ");
             str.Append(input.Byte0.ToString() + " ");
             str.Append(input.Byte1.ToString() + " ");
@@ -426,17 +422,17 @@ namespace ArrowPointCANBusTool.Canbus
         // converts string in the format "frame can_id receive_time raw_bytes" as in socketcand rawmode (with < and > removed)
         public CanPacket rawInputToCan(String input)
         {   
-            
-
             input = input.Trim();
             String[] vals = input.Split(' ');
             if (vals.Length < 3) {
                 return null;
             }
-            Debug.Print(vals.ToString());
+
             String rawCanId = vals[1] ;
             String rawBytesString = vals[3]; // populate with the frame's bytestring
-            CanPacket output = new CanPacket(rawBytesString);
+            CanPacket output = new CanPacket();
+
+            output.RawBytesString = rawBytesString;
             output.CanId = Convert.ToUInt32(rawCanId, 16);
 
             
