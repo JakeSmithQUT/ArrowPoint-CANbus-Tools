@@ -68,18 +68,9 @@ namespace ArrowPointCANBusTool.Canbus
             isConnected = false;
             if (!SocketCanInitialised)
             {
-                String resp = SendMessageGetResponseInner("< open can0 >");
-                Debug.Print(resp);
-                if (resp.Equals(ERROR_STR)) {
-                    isConnected = false;
-                }
-                else if (resp.Equals("< hi >< ok >"))
-                {
-                    SocketCanInitialised = true;
-                    isConnected = true;
-                }   
+                client = StartClient();
             }
-            StartReceiver(); // Ghetto af
+            StartReceiver();
             return isConnected;
         }
 
@@ -103,23 +94,9 @@ namespace ArrowPointCANBusTool.Canbus
 
         private Boolean StartReceiver() {
             try {
-
-                // Create a socket connection, completely seperate to the other one
-
-                /*
-                 * 
-                 *   client = new TcpClient {
-                        ReceiveTimeout = 500
-                    };
-                    client.ConnectAsync(Ip, Port).Wait(500);
-
-                  Use this connection to < hi > and switch to raw mode
-
-                Down this connection, now comes everthing 
-                */
-
                 NetworkStream stream = null;
 
+                // initialise connection and get all raw packets - add filter here if required
                 Byte[] data = System.Text.Encoding.ASCII.GetBytes("< open can0 >< rawmode >" + "\r\n");
                 if (receiver == null || receiver.Connected == false) {
                     receiver = new TcpClient {
@@ -128,7 +105,6 @@ namespace ArrowPointCANBusTool.Canbus
                     receiver.Connect(Ip, Port);
                 }
 
-                // if (client == null || client.Connected == false) return (ERROR_STR);
                 stream = receiver.GetStream();
                 // Send the message to the connected TcpServer. 
                 stream.Write(data, 0, data.Length);
@@ -138,27 +114,7 @@ namespace ArrowPointCANBusTool.Canbus
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
 
-                int delayed = 0;
-                // Read the first batch of the TcpServer response bytes.
-                while (delayed < 1000) {
-                    char finalChar = ' ';
-
-                    if (responseData != null && responseData != String.Empty)
-                        finalChar = responseData[responseData.Length - 1];
-
-                    if (finalChar != '\r') {
-                        Int32 bytes = 0;
-                        try {
-                            bytes = stream.Read(data, 0, data.Length);
-                            responseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                        } catch {
-                            // Read error, lets leave the loop
-                            break;
-                        }
-                    } else break;
-                    Thread.Sleep(10);
-                    delayed += 10;
-                }
+                responseData = readResponse(stream);
 
                 if (responseData != String.Empty) {
                     responseData = responseData.Replace("\r\n", string.Empty);
@@ -168,11 +124,6 @@ namespace ArrowPointCANBusTool.Canbus
                 if (responseData == "< ok >< ok >") { // MIGHT NEED TO REMOVE < hi > 
                     Debug.WriteLine("Connected");
                 }
-
-                //if (!SendMessageGetResponseInner("< open can0 >").Equals("< hi >< ok >"))
-                //    return (ERROR_STR);
-                //    SocketCanInitialised = true;
-                //}
 
                 CanReceiverThread = new Thread(CanReceiverLoop);
                 CanReceiverThread.Start();
@@ -192,34 +143,53 @@ namespace ArrowPointCANBusTool.Canbus
             } catch { };
         }
 
+        // used to read the response of a given network stream (assumes incoming response)
+        private String readResponse(NetworkStream stream)
+        {
+            // Receive the TcpServer.response.
+            // Buffer to store the response bytes.
+            var data = new Byte[256];
+            int delayed = 0;
+            // String to store the response ASCII representation.
+            String responseData = String.Empty;
+            // Read the first batch of the TcpServer response bytes.
+            while (delayed < 1000)
+            {
+                char finalChar = ' ';
+
+                if (responseData != null && responseData != String.Empty)
+                    finalChar = responseData[responseData.Length - 1];
+
+                if (finalChar != '\r')
+                {
+                    Int32 bytes = 0;
+                    try
+                    {
+                        bytes = stream.Read(data, 0, data.Length);
+                        responseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    }
+                    catch
+                    {
+                        // Read error, lets leave the loop
+                        break;
+                    }
+                }
+                else break;
+                Thread.Sleep(10);
+                delayed += 10;
+            }
+            return responseData;
+        }
+
         private void CanReceiverLoop() {
             while (this.isConnected) {
                 try {
                     Byte[] data = new Byte[256];
                     // String to store the response ASCII representation.
                     String rawResponseData = String.Empty;
-                    int delayed = 0;
-                    // Read the first batch of the TcpServer response bytes.
-                    while (delayed < 1000) {
-                        char finalChar = ' ';
-
-                        if (rawResponseData != null && rawResponseData != String.Empty)
-                            finalChar = rawResponseData[rawResponseData.Length - 1];
-
-                        if (finalChar != '\r') {
-                            Int32 bytes = 0;
-                            try {
-                                bytes = receiver.GetStream().Read(data, 0, data.Length);
-                                rawResponseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                            } catch {
-                                // Read error, lets leave the loop
-                                Debug.Print("Read error in CanReceiverLoop");
-                                break;
-                            }
-                        } else break;
-                        Thread.Sleep(10);
-                        delayed += 10;
-                    }
+                    NetworkStream stream = receiver.GetStream();
+                    
+                    rawResponseData = readResponse(stream);
 
                     // remove all newlines, returns, and > characters
                     if (rawResponseData != String.Empty) {
@@ -227,19 +197,6 @@ namespace ArrowPointCANBusTool.Canbus
                         rawResponseData = rawResponseData.Replace("\r", string.Empty);
                         rawResponseData = rawResponseData.Replace(">", string.Empty);
                     }
-
-
-                    /* read whatever is coming down that connection
-                     * 
-                     * Make a canpacket from it
-                     * 
-                     * 
-
-                    */
-
-                    /* if (CheckIfTritiumDatagram(data)) {
-                         SplitCanPackets(data, sourceAddress, port);
-                     } */
 
                     String[] packets = rawResponseData.Trim().Split('<');
 
@@ -268,10 +225,50 @@ namespace ArrowPointCANBusTool.Canbus
                     }
 
                 } catch {
-                    Debug.Print("Cole stinks");
                     Disconnect();
                 }
             }
+        }
+
+        // initialise client connection for sending canpackets. goes through init sequence for client socket connection and returns TCPclient
+        private TcpClient StartClient()
+        {
+            TcpClient clientConnection = null;
+            NetworkStream sendStream = null;
+            Byte[] connectionMessage = System.Text.Encoding.ASCII.GetBytes("< open can0 >");
+
+            var ReceiveTimeout = 500;
+            clientConnection = new TcpClient
+            {
+                ReceiveTimeout = ReceiveTimeout
+            };
+            clientConnection.Connect(Ip, Port);
+            if (clientConnection.Connected)
+            {
+                sendStream = clientConnection.GetStream();
+                sendStream.Write(connectionMessage, 0, connectionMessage.Length);
+
+                String resp = String.Empty;
+                connectionMessage = new Byte[256];
+
+                int delayed = 0;
+
+                Debug.WriteLine("ID: 2.5");
+
+                resp = readResponse(sendStream);
+
+                if (resp.Equals(ERROR_STR))
+                {
+                    isConnected = false;
+                }
+                else if (resp.Equals("< hi >< ok >"))
+                {
+                    SocketCanInitialised = true;
+                    isConnected = true;
+                }
+                return clientConnection;
+            }
+            return null;
         }
 
         private string SendMessageGetResponseInner(String message) {
@@ -303,7 +300,7 @@ namespace ArrowPointCANBusTool.Canbus
 
                 if (client == null || client.Connected == false) return (ERROR_STR);
 
-                stream = client.GetStream();
+                stream = this.client.GetStream();
 
                 Debug.WriteLine("ID: 2.4.1");
 
@@ -318,32 +315,10 @@ namespace ArrowPointCANBusTool.Canbus
 
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
-
-                int delayed = 0;
-
+                
                 Debug.WriteLine("ID: 2.5");
 
-                // Read the first batch of the TcpServer response bytes.
-                while (delayed < 1000) {
-                    char finalChar = ' ';
-
-                    if (responseData != null && responseData != String.Empty)
-                        finalChar = responseData[responseData.Length - 1];
-
-                    if (finalChar != '\r') {
-                        Int32 bytes = 0;
-
-                        try {
-                            bytes = stream.Read(data, 0, data.Length);
-                            responseData += System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                        } catch {
-                            // Read error, lets leave the loop
-                            break;
-                        }
-                    } else break;
-                    Thread.Sleep(10);
-                    delayed += 10;
-                }
+                responseData = readResponse(stream);
 
                 Debug.WriteLine("ID: 2.6 - " + responseData);
 
@@ -351,10 +326,7 @@ namespace ArrowPointCANBusTool.Canbus
                     responseData = responseData.Replace("\r\n", string.Empty);
                     responseData = responseData.Replace("\r", string.Empty);
                 }
-
-                // Close everything.
-                stream?.Close();
-
+                
                 Debug.WriteLine("ID: 2.7");
 
                 return responseData;
@@ -390,10 +362,30 @@ namespace ArrowPointCANBusTool.Canbus
             }
         }
 
+        // sends canPacket message over client connection
+        public void sendWithoutResponse(CanPacket canPacket)
+        {
+            if (isConnected)
+            {
+                String message = canPacketToSocketCan(canPacket);
+
+                lock (comms_locker)
+                {
+                    NetworkStream stream = client.GetStream();
+
+                    // Translate the passed message into ASCII and store it as a Byte array.
+                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+
+                    stream.Write(data, 0, data.Length);
+                }
+            }
+        }
+
 
         public int SendMessage(CanPacket canPacket)
         {
             // Put the real values in here
+            Debug.WriteLine("Sending message");
             if (SendMessageGetResponse(canPacketToSocketCan(canPacket)).Equals(ERROR_STR)) return 0;
             return 1;
         }
@@ -404,7 +396,7 @@ namespace ArrowPointCANBusTool.Canbus
             StringBuilder str = new StringBuilder();
             str.Append("< " + mode + " ");
 
-            str.Append(input.CanIdAsHex.ToString() + " ");
+            str.Append(input.CanIdAsHex.ToString().Substring(2) + " ");
             str.Append("8 ");
             str.Append(input.Byte0.ToString() + " ");
             str.Append(input.Byte1.ToString() + " ");

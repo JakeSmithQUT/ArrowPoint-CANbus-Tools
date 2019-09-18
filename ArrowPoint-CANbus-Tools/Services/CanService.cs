@@ -258,13 +258,13 @@ namespace ArrowPointCANBusTool.Services
             try
             {
                 // If the threads are already going, don't restart them
-                /*if (senderCts == null || senderCts.IsCancellationRequested)
+                if (senderCts == null || senderCts.IsCancellationRequested)
                 {
                     senderCts = new CancellationTokenSource();
 
                     // Pass the token to the cancelable operation.
                     ThreadPool.QueueUserWorkItem(new WaitCallback(CanSenderLoop), senderCts.Token);                    
-                }*/
+                }
             
                 if (listenerCts == null || listenerCts.IsCancellationRequested)
                 {
