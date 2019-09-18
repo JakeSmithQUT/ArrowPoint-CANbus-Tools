@@ -474,11 +474,13 @@ namespace ArrowPointCANBusTool.Forms {
 
             int sent = CanService.Instance.SendMessage(sendTest);
 
+            /* CONNECTION LBL
             if (CanService.Instance.IsConnected() == false) {
                 connectionLBL.Text = "Not Connected";
             } else {
                 connectionLBL.Text = "Connected";
             }
+            */
 
             var lines = CanService.Instance.AvailableInterfaces.Select(kvp => kvp.Key.ToString() + " -> " + kvp.Value.ToString());
             Console.WriteLine(lines);
@@ -558,6 +560,222 @@ namespace ArrowPointCANBusTool.Forms {
             this.radioButton2.Checked = true;
             this.radioButton1.Enabled = true;
             this.radioButton2.Enabled = true;
+        }
+        
+        private void BtnFrame1_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(CANID.Text) + 1;
+            if (tempInt > 999) { tempInt -= 1000; }
+            CANID.Text = tempInt.ToString();
+        }
+
+        private void BtnFrame10_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(CANID.Text) + 10;
+            if (tempInt > 999) { tempInt -= 1000; }
+            CANID.Text = tempInt.ToString();
+        }
+
+        private void BtnFrame1Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(CANID.Text) - 1;
+            if (tempInt < 0) { tempInt += 1000; }
+            CANID.Text = tempInt.ToString();
+        }
+
+        private void BtnFrame10Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(CANID.Text) - 10;
+            if (tempInt < 0) { tempInt += 1000;}
+            CANID.Text = tempInt.ToString();
+        }
+
+        private void BTNb110_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit1.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit1.Text = tempInt.ToString();
+        }
+
+        private void BTNb210_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit2.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit2.Text = tempInt.ToString();
+        }
+
+        private void BTNb310_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit3.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit3.Text = tempInt.ToString();
+        }
+
+        private void BTNb410_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit4.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit4.Text = tempInt.ToString();
+        }
+
+        private void BTNb610_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit6.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit6.Text = tempInt.ToString();
+        }
+
+        private void BTNb710_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit7.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit7.Text = tempInt.ToString();
+        }
+
+        private void BTNb810_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit8.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit8.Text = tempInt.ToString();
+        }
+
+        private void BTNb11_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit1.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit1.Text = tempInt.ToString();
+        }
+
+        private void BTNb21_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit2.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit2.Text = tempInt.ToString();
+        }
+
+        private void BTNb31_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit3.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit3.Text = tempInt.ToString();
+        }
+
+        private void BTNb41_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit4.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit4.Text = tempInt.ToString();
+        }
+
+        private void BTNb51_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit5.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit5.Text = tempInt.ToString();
+        }
+
+        private void BTNb61_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit6.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit6.Text = tempInt.ToString();
+        }
+
+        private void BTNb71_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit7.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit7.Text = tempInt.ToString();
+        }
+
+        private void BTNb81_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit8.Text) + 1;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit8.Text = tempInt.ToString();
+        }
+
+        private void BTNb11Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit1.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit1.Text = tempInt.ToString();
+        }
+
+        private void BTNb21Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit2.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit2.Text = tempInt.ToString();
+        }
+
+        private void BTNb31Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit3.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit3.Text = tempInt.ToString();
+        }
+
+        private void BTNb41Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit4.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit4.Text = tempInt.ToString();
+        }
+
+        private void BTNb51Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit5.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit5.Text = tempInt.ToString();
+        }
+
+        private void BTNb61Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit6.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit6.Text = tempInt.ToString();
+        }
+
+        private void BTNb71Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit7.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit7.Text = tempInt.ToString();
+        }
+
+        private void BTNb81Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit8.Text) - 1;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit8.Text = tempInt.ToString();
+        }
+
+        private void BTNb110Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit1.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit1.Text = tempInt.ToString();
+        }
+
+        private void BTNb210Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit2.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit2.Text = tempInt.ToString();
+        }
+
+        private void BTNb310Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit3.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit3.Text = tempInt.ToString();
+        }
+
+        private void BTNb410Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit4.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit4.Text = tempInt.ToString();
+        }
+
+        private void BTNb510Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit5.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit5.Text = tempInt.ToString();
+        }
+
+        private void BTNb610Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit6.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit6.Text = tempInt.ToString();
+        }
+
+        private void BTNb710Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit7.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit7.Text = tempInt.ToString();
+        }
+
+        private void BTNb810Neg_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit8.Text) - 10;
+            if (tempInt < 0) { tempInt += 100; }
+            Bit8.Text = tempInt.ToString();
+        }
+
+        private void BTNb510_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(Bit5.Text) + 10;
+            if (tempInt > 99) { tempInt -= 100; }
+            Bit5.Text = tempInt.ToString();
         }
     }
 

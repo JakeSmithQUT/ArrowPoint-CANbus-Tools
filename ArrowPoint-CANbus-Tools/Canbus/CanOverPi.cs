@@ -353,7 +353,7 @@ namespace ArrowPointCANBusTool.Canbus
                 }
 
                 // Close everything.
-                stream?.Close();
+               // stream?.Close();
 
                 Debug.WriteLine("ID: 2.7");
 
