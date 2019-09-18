@@ -326,7 +326,7 @@ namespace ArrowPointCANBusTool.Canbus
                     responseData = responseData.Replace("\r\n", string.Empty);
                     responseData = responseData.Replace("\r", string.Empty);
                 }
-                
+
                 Debug.WriteLine("ID: 2.7");
 
                 return responseData;
