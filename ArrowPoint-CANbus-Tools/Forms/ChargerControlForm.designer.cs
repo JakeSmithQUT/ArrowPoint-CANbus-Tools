@@ -32,6 +32,12 @@ namespace ArrowPointCANBusTool.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -104,6 +110,7 @@ namespace ArrowPointCANBusTool.Forms
             this.SaveData = new System.Windows.Forms.Button();
             this.ClearData = new System.Windows.Forms.Button();
             this.ChargeChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.RequestedChargeVoltage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -120,6 +127,7 @@ namespace ArrowPointCANBusTool.Forms
             this.statusStrip.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChargeChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // startCharge
@@ -829,6 +837,7 @@ namespace ArrowPointCANBusTool.Forms
             // 
             this.groupBox5.Controls.Add(this.SaveData);
             this.groupBox5.Controls.Add(this.ClearData);
+            this.groupBox5.Controls.Add(this.chart1);
             this.groupBox5.Controls.Add(this.ChargeChart);
             this.groupBox5.Location = new System.Drawing.Point(6, 337);
             this.groupBox5.Name = "groupBox5";
@@ -863,13 +872,63 @@ namespace ArrowPointCANBusTool.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ChargeChart.BackColor = System.Drawing.SystemColors.Control;
             this.ChargeChart.BorderlineColor = System.Drawing.SystemColors.Control;
-            chartArea1.AxisX.LabelStyle.Format = "HH:mm:ss";
-            chartArea1.Name = "ChartArea1";
-            this.ChargeChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.ChargeChart.Legends.Add(legend1);
+            chartArea2.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea2.Name = "ChartArea1";
+            this.ChargeChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.ChargeChart.Legends.Add(legend2);
             this.ChargeChart.Location = new System.Drawing.Point(6, 10);
             this.ChargeChart.Name = "ChargeChart";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.Black;
+            series5.Legend = "Legend1";
+            series5.Name = "Voltage";
+            series5.XValueMember = "DateTime";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series5.YValueMembers = "PackV";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Legend = "Legend1";
+            series6.Name = "SOC";
+            series6.XValueMember = "DateTime";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series6.YValueMembers = "SOCAsInt";
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Legend = "Legend1";
+            series7.Name = "Current";
+            series7.XValueMember = "DateTime";
+            series7.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series7.YValueMembers = "ChargeCurrentA";
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series8.Legend = "Legend1";
+            series8.Name = "Max Cell Temp";
+            series8.XValueMember = "DateTime";
+            series8.YValueMembers = "MaxCellTempC";
+            this.ChargeChart.Series.Add(series5);
+            this.ChargeChart.Series.Add(series6);
+            this.ChargeChart.Series.Add(series7);
+            this.ChargeChart.Series.Add(series8);
+            this.ChargeChart.Size = new System.Drawing.Size(857, 209);
+            this.ChargeChart.TabIndex = 15;
+            this.ChargeChart.Text = "chart1";
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart1.BackColor = System.Drawing.SystemColors.Control;
+            this.chart1.BorderlineColor = System.Drawing.SystemColors.Control;
+            chartArea1.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(28, -5);
+            this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Color = System.Drawing.Color.Black;
@@ -898,13 +957,13 @@ namespace ArrowPointCANBusTool.Forms
             series4.Name = "Max Cell Temp";
             series4.XValueMember = "DateTime";
             series4.YValueMembers = "MaxCellTempC";
-            this.ChargeChart.Series.Add(series1);
-            this.ChargeChart.Series.Add(series2);
-            this.ChargeChart.Series.Add(series3);
-            this.ChargeChart.Series.Add(series4);
-            this.ChargeChart.Size = new System.Drawing.Size(857, 209);
-            this.ChargeChart.TabIndex = 15;
-            this.ChargeChart.Text = "chart1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(857, 209);
+            this.chart1.TabIndex = 15;
+            this.chart1.Text = "chart1";
             // 
             // ChargerControlForm
             // 
@@ -949,6 +1008,7 @@ namespace ArrowPointCANBusTool.Forms
             this.statusStrip.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ChargeChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1037,5 +1097,6 @@ namespace ArrowPointCANBusTool.Forms
         private TableLayoutPanel tableLayoutPanel4;
         private Label label23;
         private ComboBox ChargerComboBox;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
