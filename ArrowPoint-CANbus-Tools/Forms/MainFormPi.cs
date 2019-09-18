@@ -777,6 +777,10 @@ namespace ArrowPointCANBusTool.Forms {
             if (tempInt > 99) { tempInt -= 100; }
             Bit5.Text = tempInt.ToString();
         }
+
+        private void Label22_Click(object sender, EventArgs e) {
+
+        }
     }
 
 }
