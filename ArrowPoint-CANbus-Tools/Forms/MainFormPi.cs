@@ -143,52 +143,6 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
 
-
-        /*
-        private void FormMain_RequestConnectionStatusChange(bool connected) {
-            if (connected) {
-                connectedStatusLabel.Text = "Connected";
-                connectedStatusLabel.BackColor = Color.DarkGreen;
-                MenuStrip.Items.Find("dashboardToolStripMenuItem", true)[0].Enabled = true;
-                MenuStrip.Items.Find("monitoringToolStripMenuItem", true)[0].Enabled = true;
-                MenuStrip.Items.Find("simulatorsToolStripMenuItem", true)[0].Enabled = true;
-                MenuStrip.Items.Find("batteryToolStripMenuItem", true)[0].Enabled = true;
-                MenuStrip.Items.Find("LoadConfigurationToolStripMenuItem", true)[0].Enabled = true;
-                MenuStrip.Items.Find("SaveConfigurationToolStripMenuItem", true)[0].Enabled = true;
-            } else {
-                connectedStatusLabel.Text = "Not Connected";
-                connectedStatusLabel.BackColor = Color.Red;
-                MenuStrip.Items.Find("dashboardToolStripMenuItem", true)[0].Enabled = false;
-                MenuStrip.Items.Find("monitoringToolStripMenuItem", true)[0].Enabled = false;
-                MenuStrip.Items.Find("simulatorsToolStripMenuItem", true)[0].Enabled = false;
-                MenuStrip.Items.Find("batteryToolStripMenuItem", true)[0].Enabled = false;
-                MenuStrip.Items.Find("LoadConfigurationToolStripMenuItem", true)[0].Enabled = false;
-                MenuStrip.Items.Find("SaveConfigurationToolStripMenuItem", true)[0].Enabled = false;
-            }
-        }
-        */
-        /*
-        private void ShowConnectionForm() {
-            foreach (Form form in Application.OpenForms) {
-                if (form.GetType() == typeof(ConnectForm)) {
-                    form.Activate();
-                    return;
-                }
-            }
-
-            ConnectForm settingsForm = new ConnectForm() {
-                MdiParent = this
-            };
-            settingsForm.Show();
-        }
-        */
-
-
-        /*
-        private void ConnectDisconnectToolStripMenuItem_Click(object sender, EventArgs e) {
-            ShowConnectionForm();
-        }
-        */
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e) {
             CanService.Instance.Disconnect();
             Application.Exit();
@@ -239,13 +193,22 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void Timer1_Tick(object sender, EventArgs e) {
+            
+            
             try {
                 // Setup the BMU Panel
 
                 BMU activeBMU = batteryService.BatteryData.GetBMU(activeBMUId);
-
+                
+                
                 if (activeBMU != null) {
                     // Sys status
+                    if (BatteryChargeService.Instance.IsFullyCharged) { TXTBatStatus.Text = "Full Charge"; }
+                    else if (BatteryChargeService.Instance.IsCharging) { TXTBatStatus.Text = "Charging"; }
+                    else { TXTBatStatus.Text = "Depleting"; }
+                    if (CanService.Instance.IsConnected()) { ConnectedLBL.Text = "True"; ConnectedLBL.ForeColor = Color.Green; } else { ConnectedLBL.Text = "False"; ConnectedLBL.ForeColor = Color.Red; }
+                    batteryPRO.Value = Convert.ToInt32(activeBMU.SOCPercentage);
+                    TXTBatPercentage.Text = activeBMU.SOCPercentage.ToString() + "%";
                     TXTMinCellV.Text = activeBMU.MinCellVoltage.ToString();
                     TXTMinCellV.Text = activeBMU.MaxCellVoltage.ToString();
                     TXTMinCellVTemp.Text = ((double)activeBMU.MinCellTemp / 10).ToString();
@@ -502,7 +465,7 @@ namespace ArrowPointCANBusTool.Forms {
             int sent = CanService.Instance.SendMessage(sendTest);
 
             /* CONNECTION LBL
-            if (CanService.Instance.IsConnected() == false) {
+            if (C == false) {
                 connectionLBL.Text = "Not Connected";
             } else {
                 connectionLBL.Text = "Connected";
@@ -828,7 +791,7 @@ namespace ArrowPointCANBusTool.Forms {
             if (BatteryChargeService.Instance.IsCharging)
                 await BatteryChargeService.Instance.StopCharge();
             else {
-                startDischarge.Enabled = false;
+                //startDischarge.Enabled = false;
                 preCharge = true;
 
                 if ((BatteryChargeService.Instance.BatteryState == CanReceivingNode.STATE_WARNING || BatteryChargeService.Instance.BatteryState == CanReceivingNode.STATE_ON || BatteryChargeService.Instance.BatteryState == CanReceivingNode.STATE_IDLE) &&
@@ -849,25 +812,6 @@ namespace ArrowPointCANBusTool.Forms {
             UpdateStartStopDetails();
         }
 
-        private async void StartDischarge_ClickAsync(object sender, EventArgs e) {
-
-            startDischarge.Enabled = false;
-
-            // This should never happen.  It is a safety just in case
-            if (BatteryChargeService.Instance.IsCharging) {
-                BatteryDischargeService.Instance.StopDischarge();
-                return;
-            }
-
-            if (BatteryDischargeService.Instance.IsDischarging) {
-                BatteryDischargeService.Instance.StopDischarge();
-                startDischarge.Text = "Start Discharge";
-            } else {
-                startCharge.Enabled = false;
-                await BatteryDischargeService.Instance.StartDischarge();
-                startDischarge.Text = "Stop Discharge";
-            }
-        }
 
         private async void ChargerControlForm_FormClosingAsync(object sender, FormClosingEventArgs e) {
             timer.Stop();
@@ -877,24 +821,24 @@ namespace ArrowPointCANBusTool.Forms {
 
         private void UpdateStartStopDetails() {
             if (BatteryChargeService.Instance.IsCharging || preCharge) {
-                startDischarge.Enabled = false;
+                //startDischarge.Enabled = false;
                 startCharge.Text = "Stop Charge";
                 maxSocketCurrent.Enabled = false;
             } else {
                 ActualVoltageTxt.Text = "";
                 ActualCurrentTxt.Text = "";
 
-                startDischarge.Enabled = true;
+                //startDischarge.Enabled = true;
                 startCharge.Text = "Start Charge";
                 maxSocketCurrent.Enabled = true;
             }
 
             if (BatteryDischargeService.Instance.IsDischarging) {
                 startCharge.Enabled = false;
-                startDischarge.Text = "Stop Discharge";
+                //startDischarge.Text = "Stop Discharge";
             } else {
                 startCharge.Enabled = true;
-                startDischarge.Text = "Start Discharge";
+                //startDischarge.Text = "Start Discharge";
             }
         }
 
@@ -918,8 +862,8 @@ namespace ArrowPointCANBusTool.Forms {
             if (!BatteryChargeService.Instance.IsCommsOk) Comms_Ok.ForeColor = Color.Red; else Comms_Ok.ForeColor = Color.Green;
             if (!BatteryChargeService.Instance.IsACOk) AC_Ok.ForeColor = Color.Red; else AC_Ok.ForeColor = Color.Green;
             if (!BatteryChargeService.Instance.IsDCOk) DC_Ok.ForeColor = Color.Red; else DC_Ok.ForeColor = Color.Green;
-            if (!BatteryChargeService.Instance.IsTempOk) Temp_Ok.ForeColor = Color.Red; else Temp_Ok.ForeColor = Color.Green;
-            if (!BatteryChargeService.Instance.IsHardwareOk) HW_Ok.ForeColor = Color.Red; else HW_Ok.ForeColor = Color.Green;
+            if (!BatteryChargeService.Instance.IsTempOk) { Temp_Ok.BackColor = Color.Red; BTNTempWarn.ForeColor = Color.Red; } else { Temp_Ok.ForeColor = Color.Green; BTNTempWarn.BackColor= Color.Transparent; }
+            if (!BatteryChargeService.Instance.IsHardwareOk) { BTNTempWarn.BackColor = Color.Red;  HW_Ok.ForeColor = Color.Red; } else { HW_Ok.ForeColor = Color.Green; BTNTempWarn.BackColor = Color.Transparent; }
 
             batteryStatusLabel.Text = "Battery - " + CanReceivingNode.GetStatusText(BatteryChargeService.Instance.BatteryState);
             batteryStatusLabel.ToolTipText = BatteryChargeService.Instance.BatteryStateMessage;
@@ -940,27 +884,46 @@ namespace ArrowPointCANBusTool.Forms {
 
             ChargeData chargeData = e.Message;
 
-            /* CHART NOT COMPILING ON LINUX
-            if (ChargeChart.InvokeRequired) {
-                ChargeChart.Invoke(new Action(() => {
-                    ChargeChart.DataSource = BatteryMonitoringService.Instance.ChargeDataSet;
-                    ChargeChart.DataBind();
-                }
-                ));
-            }
-            */
+          
         }
 
-        private void DischargeLBLNeg_Click(object sender, EventArgs e) {
-            int tempInt = Int32.Parse(numericUpDown2.Text) - 1;
-            if (tempInt <= 0) { tempInt = 0; }
-            numericUpDown2.Text = tempInt.ToString();
+        private void ChargerLayoutPanel_Paint(object sender, PaintEventArgs e) {
+
         }
 
-        private void DischargeLBL_Click(object sender, EventArgs e) {
-            int tempInt = Int32.Parse(numericUpDown2.Text) + 1;
-            if (tempInt >= 100) { tempInt = 100; }
-            numericUpDown2.Text = tempInt.ToString();
+        private void ChargeVoltUp_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(RequestedChargeVoltage.Text) + 1;
+            RequestedChargeVoltage.Text = tempInt.ToString();
+        }
+
+        private void ChargeVoltDown_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(RequestedChargeVoltage.Text) - 1;
+            RequestedChargeVoltage.Text = tempInt.ToString();
+        }
+
+        private void ChargeCurrentUp_Click(object sender, EventArgs e) {
+            Double tempInt = Convert.ToDouble(RequestedChargeCurrent.Text);
+            tempInt += 1;
+            RequestedChargeCurrent.Text = tempInt.ToString();
+        }
+
+        private void ChargeCurrentDown_Click(object sender, EventArgs e) {
+            Double tempInt = Convert.ToDouble(RequestedChargeCurrent.Text);
+            tempInt -= 1;
+            RequestedChargeCurrent.Text = tempInt.ToString();
+        }
+
+        private void ChargeToUp_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(chargeToPercentage.Text) + 5;
+            if (tempInt > 100) { tempInt = 100; }
+            chargeToPercentage.Text = tempInt.ToString();
+
+        }
+
+        private void ChargeToDown_Click(object sender, EventArgs e) {
+            int tempInt = Int32.Parse(chargeToPercentage.Text) - 5;
+            if (tempInt < 0) { tempInt = 0; }
+            chargeToPercentage.Text = tempInt.ToString();
         }
     }
 
