@@ -207,13 +207,18 @@ namespace ArrowPointCANBusTool.Forms {
                     else if (BatteryChargeService.Instance.IsCharging) { TXTBatStatus.Text = "Charging"; }
                     else { TXTBatStatus.Text = "Depleting"; }
                     if (CanService.Instance.IsConnected()) { ConnectedLBL.Text = "True"; ConnectedLBL.ForeColor = Color.Green; } else { ConnectedLBL.Text = "False"; ConnectedLBL.ForeColor = Color.Red; }
+                    if (activeBMU.SOCPercentage <= 20) { BTNLowBatteryWarn.BackColor = Color.Red; }
                     batteryPRO.Value = Convert.ToInt32(activeBMU.SOCPercentage);
                     TXTBatPercentage.Text = activeBMU.SOCPercentage.ToString() + "%";
                     TXTMinCellV.Text = activeBMU.MinCellVoltage.ToString();
-                    TXTMinCellV.Text = activeBMU.MaxCellVoltage.ToString();
+                    TXTMaxCellV.Text = activeBMU.MaxCellVoltage.ToString();
                     TXTMinCellVTemp.Text = ((double)activeBMU.MinCellTemp / 10).ToString();
                     TXTMaxCellVTemp.Text = ((double)activeBMU.MaxCellTemp / 10).ToString();
                     TXTBatTemp.Text = ((((double)activeBMU.MaxCellTemp / 10) - ((double)activeBMU.MinCellTemp / 10)) / 2).ToString();
+                    try { TXTCellVDifference.Text = (Int32.Parse(TXTMaxCellV.Text) - Int32.Parse(TXTMinCellV.Text)).ToString(); } catch { }
+                    if (Convert.ToInt32(TXTBatTemp.Text) > 80) { BTNTempWarn.BackColor = Color.Red; }
+
+
                     //sysStatus.Cells[5].Value = activeBMU.BatteryVoltage;
                     //sysStatus.Cells[6].Value = activeBMU.BatteryCurrent;
                     //sysStatus.Cells[7].Value = activeBMU.BalanceVoltageThresholdRising;

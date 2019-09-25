@@ -213,6 +213,7 @@ namespace ArrowPointCANBusTool.Canbus
                                     if (p != null && p.CanId != 0)
                                     {
                                         ReceivedCanPacketCallBack?.Invoke(p);
+                                        Debug.Print(canPacketToSocketCan(p));
                                     }
                                 }
                             }
