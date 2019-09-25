@@ -25,7 +25,7 @@ namespace ArrowPointCANBusTool.Forms {
         private int activeBMUId = 0;
         private String ipAddress = "10.16.16.78";
         private int port = 29536;
-
+        private bool ConnectSwitch = true;
         private Timer timerCharge;
         private bool preCharge = false;
 
@@ -504,38 +504,40 @@ namespace ArrowPointCANBusTool.Forms {
         }
 
         private void ConnectBtn_Click_1(object sender, EventArgs e) {
-            Boolean ipAddressParsed = IPAddress.TryParse(this.ipAddressTb.Text, out IPAddress notUsedIpAddress);
-            Boolean portParsed = Int32.TryParse(this.portTb.Text, out this.port);
+            try {
+                Boolean ipAddressParsed = IPAddress.TryParse(this.ipAddressTb.Text, out IPAddress notUsedIpAddress);
+                Boolean portParsed = Int32.TryParse(this.portTb.Text, out this.port);
 
-            List<string> selectedInterfaces = new List<String>();
+                List<string> selectedInterfaces = new List<String>();
 
-            foreach (IpDetails ipDetails in InterfaceCheckedListBox.CheckedItems) {
-                selectedInterfaces.Add(ipDetails.IpAddress);
-            }
+                foreach (IpDetails ipDetails in InterfaceCheckedListBox.CheckedItems) {
+                    selectedInterfaces.Add(ipDetails.IpAddress);
+                }
 
-            CanService.Instance.SelectedInterfaces = selectedInterfaces;
+                CanService.Instance.SelectedInterfaces = selectedInterfaces;
 
-            Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
-            Console.WriteLine(canServiceConnected);
-            Console.WriteLine(CanService.Instance.IsConnected());
-            if (ipAddressParsed && portParsed && canServiceConnected) {
-                this.connectBtn.Enabled = false;
-                this.disconnectBtn.Enabled = true;
+                Boolean canServiceConnected = CanService.Instance.ConnectOverSocketCan(this.ipAddress, this.port);
+                Console.WriteLine(canServiceConnected);
+                Console.WriteLine(CanService.Instance.IsConnected());
+                if (ipAddressParsed && portParsed && canServiceConnected) {
+                    this.connectBtn.Enabled = false;
+                    this.disconnectBtn.Enabled = true;
 
-                this.ipAddressTb.Enabled = false;
-                this.portTb.Enabled = false;
-                this.radioButton1.Checked = false;
-                this.radioButton2.Checked = false;
-                this.radioButton1.Enabled = false;
-                this.radioButton2.Enabled = false;
+                    this.ipAddressTb.Enabled = false;
+                    this.portTb.Enabled = false;
+                    this.radioButton1.Checked = false;
+                    this.radioButton2.Checked = false;
+                    this.radioButton1.Enabled = false;
+                    this.radioButton2.Enabled = false;
 
-            } else if (!ipAddressParsed) {
-                MessageBox.Show("Failed to parse IP address.");
-            } else if (!portParsed) {
-                MessageBox.Show("Failed to parse port value. Port must be an integer");
-            } else {
-                MessageBox.Show("Failed to connect, this is likely caused by another tool already listening on the CanBus Port.");
-            }
+                } else if (!ipAddressParsed) {
+                    MessageBox.Show("Failed to parse IP address.");
+                } else if (!portParsed) {
+                    MessageBox.Show("Failed to parse port value. Port must be an integer");
+                } else {
+                    MessageBox.Show("Failed to connect, this is likely caused by another tool already listening on the CanBus Port.");
+                }
+            } catch { }
         }
 
         private void DisconnectBtn_Click_1(object sender, EventArgs e) {
@@ -924,6 +926,138 @@ namespace ArrowPointCANBusTool.Forms {
             int tempInt = Int32.Parse(chargeToPercentage.Text) - 5;
             if (tempInt < 0) { tempInt = 0; }
             chargeToPercentage.Text = tempInt.ToString();
+        }
+
+        private void IpAddressTb_Click(object sender, EventArgs e) {
+            ConnectSwitch = true;
+            button13.Enabled = true;
+        }
+
+        private void PortTb_TextChanged(object sender, EventArgs e) {
+            ConnectSwitch = false;
+            button13.Enabled = false;
+        }
+
+        private void Button11_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 1;
+                } else {
+                    portTb.Text += 1;
+                }
+            }
+        }
+
+        private void Button10_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 2;
+                } else {
+                    portTb.Text += 2;
+                }
+            }
+        }
+
+        private void Button9_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 3;
+                } else {
+                    portTb.Text += 3;
+                }
+            }
+        }
+
+        private void Button8_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 4;
+                } else {
+                    portTb.Text += 4;
+                }
+            }
+        }
+
+        private void Button5_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 5;
+                } else {
+                    portTb.Text += 5;
+                }
+            }
+        }
+
+        private void Button4_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 6;
+                } else {
+                    portTb.Text += 6;
+                }
+            }
+        }
+
+        private void Ip1_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 7;
+                } else {
+                    portTb.Text += 7;
+                }
+            }
+        }
+
+        private void Button2_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 8;
+                } else {
+                    portTb.Text += 8;
+                }
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 9;
+                } else {
+                    portTb.Text += 9;
+                }
+            }
+        }
+
+        private void Button13_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += '.';
+                } else {
+                    portTb.Text += '.';
+                }
+            }
+        }
+
+        private void Button12_Click(object sender, EventArgs e) {
+            try {
+                if (InterfaceCheckedListBox.Enabled) {
+                    if (ConnectSwitch) {
+                        ipAddressTb.Text = ipAddressTb.Text.Remove(ipAddressTb.Text.Length - 1, 1);
+                    } else {
+                        portTb.Text = portTb.Text.Remove(portTb.Text.Length - 1, 1);
+                    }
+                }
+            } catch { }
+        }
+
+        private void Button14_Click(object sender, EventArgs e) {
+            if (InterfaceCheckedListBox.Enabled) {
+                if (ConnectSwitch) {
+                    ipAddressTb.Text += 0;
+                } else {
+                    portTb.Text += 0;
+                }
+            }
         }
     }
 
