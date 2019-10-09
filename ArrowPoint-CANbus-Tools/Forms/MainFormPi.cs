@@ -47,6 +47,10 @@ namespace ArrowPointCANBusTool.Forms {
 
             // Setup as initially not connected
             //FormMain_RequestConnectionStatusChange(false);
+            
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            
 
             this.carData = new CarData();
 
@@ -206,7 +210,9 @@ namespace ArrowPointCANBusTool.Forms {
                     if (BatteryChargeService.Instance.IsFullyCharged) { TXTBatStatus.Text = "Full Charge"; }
                     else if (BatteryChargeService.Instance.IsCharging) { TXTBatStatus.Text = "Charging"; }
                     else { TXTBatStatus.Text = "Depleting"; }
-                    if (CanService.Instance.IsConnected()) { ConnectedLBL.Text = "True"; ConnectedLBL.ForeColor = Color.Green; } else { ConnectedLBL.Text = "False"; ConnectedLBL.ForeColor = Color.Red; }
+                    if (CanService.Instance.IsConnected()) { ConnectedLBL.Text = "True"; ConnectedLBL.ForeColor = Color.Green; LBLconnectConnect.Text = "CONNECTED"; LBLconnectConnect.ForeColor = Color.Green; } 
+                        else { ConnectedLBL.Text = "False"; ConnectedLBL.ForeColor = Color.Red; LBLconnectConnect.Text = "NOT CONNECTED"; LBLconnectConnect.ForeColor = Color.Red; }
+
                     if (activeBMU.SOCPercentage <= 20) { BTNLowBatteryWarn.BackColor = Color.Red; }
                     batteryPRO.Value = Convert.ToInt32(activeBMU.SOCPercentage);
                     TXTBatPercentage.Text = activeBMU.SOCPercentage.ToString() + "%";
@@ -1063,6 +1069,50 @@ namespace ArrowPointCANBusTool.Forms {
                     portTb.Text += 0;
                 }
             }
+        }
+
+        private void TabPage1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void PortTb_TextChanged_1(object sender, EventArgs e) {
+
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e) {
+
+        }
+
+        private void InterfaceCheckedListBox_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Label7_Click(object sender, EventArgs e) {
+
+        }
+
+        private void Label15_Click(object sender, EventArgs e) {
+
+        }
+
+        private void Label16_Click(object sender, EventArgs e) {
+
+        }
+
+        private void Label17_Click(object sender, EventArgs e) {
+
+        }
+
+        private void Label18_Click(object sender, EventArgs e) {
+
+        }
+
+        private void CmuTelemetry_Enter(object sender, EventArgs e) {
+
+        }
+
+        private void Label5_Click(object sender, EventArgs e) {
+
         }
     }
 
