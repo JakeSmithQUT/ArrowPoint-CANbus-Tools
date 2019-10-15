@@ -48,8 +48,8 @@ namespace ArrowPointCANBusTool.Forms {
             // Setup as initially not connected
             //FormMain_RequestConnectionStatusChange(false);
             
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
+            //FormBorderStyle = FormBorderStyle.None;
+            //WindowState = FormWindowState.Maximized;
             
 
             this.carData = new CarData();

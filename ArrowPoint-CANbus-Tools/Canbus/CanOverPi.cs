@@ -212,6 +212,7 @@ namespace ArrowPointCANBusTool.Canbus
                                     CanPacket p = rawInputToCan(s);
                                     if (p != null && p.CanId != 0)
                                     {
+                                        //Console.WriteLine(s);
                                         ReceivedCanPacketCallBack?.Invoke(p);
                                         Debug.Print(canPacketToSocketCan(p));
                                     }
@@ -407,14 +408,16 @@ namespace ArrowPointCANBusTool.Canbus
             str.Append(input.Byte5.ToString() + " ");
             str.Append(input.Byte6.ToString() + " ");
             str.Append(input.Byte7.ToString() + " ");
-
             str.Append(">");
             return str.ToString();
         }
 
         // converts string in the format "frame can_id receive_time raw_bytes" as in socketcand rawmode (with < and > removed)
         public CanPacket rawInputToCan(String input)
-        {   
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             input = input.Trim();
             String[] vals = input.Split(' ');
             if (vals.Length < 3) {
@@ -428,8 +431,14 @@ namespace ArrowPointCANBusTool.Canbus
             output.RawBytesString = rawBytesString;
             output.CanId = Convert.ToUInt32(rawCanId, 16);
 
-            
 
+
+            // Do something you want to time
+
+            sw.Stop();
+
+            Console.WriteLine("CAN ID: " + rawCanId);
+            Console.WriteLine(sw.ElapsedMilliseconds.ToString());
             return output;
         }
     }
