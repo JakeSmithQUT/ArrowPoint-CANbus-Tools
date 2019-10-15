@@ -97,7 +97,7 @@ namespace ArrowPointCANBusTool.Canbus
                 NetworkStream stream = null;
 
                 // initialise connection and get all raw packets - add filter here if required
-                Byte[] data = System.Text.Encoding.ASCII.GetBytes("< open can0 >< rawmode >" + "\r\n");
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes("< open vcan0 >< rawmode >" + "\r\n");
                 if (receiver == null || receiver.Connected == false) {
                     receiver = new TcpClient {
                         ReceiveTimeout = 500
@@ -237,7 +237,7 @@ namespace ArrowPointCANBusTool.Canbus
         {
             TcpClient clientConnection = null;
             NetworkStream sendStream = null;
-            Byte[] connectionMessage = System.Text.Encoding.ASCII.GetBytes("< open can0 >");
+            Byte[] connectionMessage = System.Text.Encoding.ASCII.GetBytes("< open vcan0 >");
 
             var ReceiveTimeout = 500;
             clientConnection = new TcpClient
