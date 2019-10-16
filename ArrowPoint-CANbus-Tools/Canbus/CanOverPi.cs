@@ -433,7 +433,7 @@ namespace ArrowPointCANBusTool.Canbus
             
             for (int i = 0; i < 8; i++)
             {
-                output.SetByte(i, bytes[i]);
+                output.SetByte(i, bytes[7-i]);
             }
             return output;
         }

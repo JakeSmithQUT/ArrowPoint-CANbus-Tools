@@ -220,7 +220,7 @@ namespace ArrowPointCANBusTool.Forms {
                     TXTMaxCellV.Text = activeBMU.MaxCellVoltage.ToString();
                     TXTMinCellVTemp.Text = ((double)activeBMU.MinCellTemp / 10).ToString();
                     TXTMaxCellVTemp.Text = ((double)activeBMU.MaxCellTemp / 10).ToString();
-                    TXTBatTemp.Text = ((((double)activeBMU.MaxCellTemp / 10) - ((double)activeBMU.MinCellTemp / 10)) / 2).ToString();
+                    TXTBatTemp.Text = ((((double)activeBMU.MaxCellTemp / 10) + ((double)activeBMU.MinCellTemp / 10))/2).ToString();
                     try { TXTCellVDifference.Text = (Int32.Parse(TXTMaxCellV.Text) - Int32.Parse(TXTMinCellV.Text)).ToString(); } catch { }
                     if (Convert.ToInt32(TXTBatTemp.Text) > 80) { BTNTempWarn.BackColor = Color.Red; }
 
