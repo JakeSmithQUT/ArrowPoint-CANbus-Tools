@@ -29,6 +29,9 @@ namespace ArrowPointCANBusTool.Forms {
         private Timer timerCharge;
         private bool preCharge = false;
 
+        private double voltageDifferenceWarn = 2.0; // Difference between max and min voltages for warning to trigger.
+        private double lowBatteryLevel = 20; // Level where battery warning will trip.
+
 
         public MainFormPi() {
             batteryService = BatteryService.Instance;
@@ -214,84 +217,18 @@ namespace ArrowPointCANBusTool.Forms {
                         else { ConnectedLBL.Text = "False"; ConnectedLBL.ForeColor = Color.Red; LBLconnectConnect.Text = "NOT CONNECTED"; LBLconnectConnect.ForeColor = Color.Red; }
 
                     if (activeBMU.SOCPercentage <= 20) { BTNLowBatteryWarn.BackColor = Color.Red; }
-                    batteryPRO.Value = Convert.ToInt32(activeBMU.SOCPercentage);
-                    TXTBatPercentage.Text = activeBMU.SOCPercentage.ToString() + "%";
-                    TXTMinCellV.Text = activeBMU.MinCellVoltage.ToString();
-                    TXTMaxCellV.Text = activeBMU.MaxCellVoltage.ToString();
+                    batteryPRO.Value = Convert.ToInt32(activeBMU.SOCPercentage*100);
+                    SOCText.Text = Convert.ToInt32(activeBMU.SOCPercentage * 100).ToString();
+                    TXTBatPercentage.Text = (activeBMU.SOCPercentage*100).ToString() + "%";
+                    TXTMinCellV.Text = (activeBMU.MinCellVoltage/1000.0).ToString();
+                    TXTMaxCellV.Text = (activeBMU.MaxCellVoltage/1000.0).ToString();
                     TXTMinCellVTemp.Text = ((double)activeBMU.MinCellTemp / 10).ToString();
                     TXTMaxCellVTemp.Text = ((double)activeBMU.MaxCellTemp / 10).ToString();
                     TXTBatTemp.Text = ((((double)activeBMU.MaxCellTemp / 10) + ((double)activeBMU.MinCellTemp / 10))/2).ToString();
-                    try { TXTCellVDifference.Text = (Int32.Parse(TXTMaxCellV.Text) - Int32.Parse(TXTMinCellV.Text)).ToString(); } catch { }
-                    if (Convert.ToInt32(TXTBatTemp.Text) > 80) { BTNTempWarn.BackColor = Color.Red; }
-
-
-                    //sysStatus.Cells[5].Value = activeBMU.BatteryVoltage;
-                    //sysStatus.Cells[6].Value = activeBMU.BatteryCurrent;
-                    //sysStatus.Cells[7].Value = activeBMU.BalanceVoltageThresholdRising;
-                    //sysStatus.Cells[8].Value = activeBMU.BalanceVoltageThresholdFalling;
-                    //sysStatus.Cells[9].Value = activeBMU.CMUCount;
-
-                    /*
-
-                    // preChgStatus
-                    DataGridViewRow prechgStatus = BMUdataGridView.Rows[2];
-                    prechgStatus.Cells[1].Value = activeBMU.PrechargeStateText;
-                    prechgStatus.Cells[7].Value = activeBMU.FanSpeed0RPM;
-                    prechgStatus.Cells[8].Value = Math.Round(activeBMU.SOCAh, 2);
-                    prechgStatus.Cells[9].Value = activeBMU.SOCPercentage * 100;
-
-                    // Flags
-                    DataGridViewRow flags = BMUdataGridView.Rows[3];
-                    flags.Cells[1].Value = activeBMU.StateMessage;
-                    flags.Cells[7].Value = activeBMU.FanSpeed1RPM;
-
-                    CMU[] cmus = batteryService.BatteryData.GetBMU(activeBMUId).GetCMUs();
-
-                    for (int cmuIndex = 0; cmuIndex < cmus.Length; cmuIndex++) {
-                        if (cmus[cmuIndex].SerialNumber != null && cmus[cmuIndex].SerialNumber != 0) {
-                            if (CMUdataGridView.Rows.Count <= cmuIndex)
-                                CMUdataGridView.Rows.Add(new DataGridViewRow());
-
-                            DataGridViewRow cmuRow = CMUdataGridView.Rows[cmuIndex];
-                            cmuRow.Cells[0].Value = "CMU " + (cmuIndex + 1);
-                            cmuRow.Cells[1].Value = cmus[cmuIndex].SerialNumber;
-                            cmuRow.Cells[2].Value = cmus[cmuIndex].PCBTemp;
-                            cmuRow.Cells[3].Value = cmus[cmuIndex].CellTemp;
-                            cmuRow.Cells[4].Value = cmus[cmuIndex].Cell0mV;
-                            cmuRow.Cells[5].Value = cmus[cmuIndex].Cell1mV;
-                            cmuRow.Cells[6].Value = cmus[cmuIndex].Cell2mV;
-                            cmuRow.Cells[7].Value = cmus[cmuIndex].Cell3mV;
-                            cmuRow.Cells[8].Value = cmus[cmuIndex].Cell4mV;
-                            cmuRow.Cells[9].Value = cmus[cmuIndex].Cell5mV;
-                            cmuRow.Cells[10].Value = cmus[cmuIndex].Cell6mV;
-                            cmuRow.Cells[11].Value = cmus[cmuIndex].Cell7mV;
-
-                            for (int cellIndex = 0; cellIndex <= 7; cellIndex++)
-                                FormatCell(cmuRow.Cells[cellIndex + 4], cmuIndex, cellIndex);
-
-                        }
-                    }
-
-                    BatteryTwelveVolt batteryTwelveVolt = batteryService.BatteryData.BatteryTwelveVolt;
-
-                    // Sys status
-
-                    double cellTemp = 0;
-                    if (batteryTwelveVolt.CellTemp != null) cellTemp = (double)batteryTwelveVolt.CellTemp;
-
-                    DataGridViewRow TwelveVStatus = TwelveVoltDataGridView.Rows[0];
-                    TwelveVStatus.Cells[0].Value = batteryTwelveVolt.SerialNumber;
-                    TwelveVStatus.Cells[1].Value = (double)cellTemp / 10;
-                    TwelveVStatus.Cells[2].Value = batteryTwelveVolt.Cell0mV;
-                    TwelveVStatus.Cells[3].Value = batteryTwelveVolt.Cell1mV;
-                    TwelveVStatus.Cells[4].Value = batteryTwelveVolt.Cell2mV;
-                    TwelveVStatus.Cells[5].Value = batteryTwelveVolt.Cell3mV;
-                    TwelveVStatus.Cells[6].Value = batteryTwelveVolt.Net12vCurrent;
-                    TwelveVStatus.Cells[7].Value = batteryTwelveVolt.HVDc2DcCurrent;
-                    TwelveVStatus.Cells[8].Value = batteryTwelveVolt.StatusFlags;
-                    TwelveVStatus.Cells[9].Value = batteryTwelveVolt.StatusEvents;
-                    */
-
+                    try { TXTCellVDifference.Text = ((activeBMU.MaxCellVoltage / 1000.0) - (activeBMU.MinCellVoltage / 1000.0)).ToString(); } catch { }
+                    if (!BatteryChargeService.Instance.IsTempOk) { BTNTempWarn.BackColor = Color.Red; } else { BTNTempWarn.BackColor = Color.Transparent; }
+                    if (Convert.ToInt32(((activeBMU.MaxCellVoltage / 1000.0) - (activeBMU.MinCellVoltage / 1000.0))) > voltageDifferenceWarn) { BTNVoltWarn.BackColor = Color.Red; } else { BTNVoltWarn.BackColor = Color.Transparent; }
+                    if ((activeBMU.SOCPercentage * 100) < lowBatteryLevel) { BTNLowBatteryWarn.BackColor = Color.Red; } else { BTNLowBatteryWarn.BackColor = Color.Transparent; }
 
                     BatteryTimerTick(sender, e);
                 }
@@ -860,7 +797,6 @@ namespace ArrowPointCANBusTool.Forms {
             Battery battery = BatteryChargeService.Instance.BatteryService.BatteryData;
             //List<ChargeData> battery = BatteryMonitoringService.Instance.ChargeDataSet;
 
-            SOCText.Text = (battery.SOCPercentage * 100).ToString() + "%";
             BatteryPackMaTxt.Text = battery.BatteryCurrent.ToString();
             BatteryPackMvTxt.Text = battery.BatteryVoltage.ToString();
             BatteryCellMinMvTxt.Text = battery.MinCellVoltage.ToString();
@@ -878,6 +814,8 @@ namespace ArrowPointCANBusTool.Forms {
             if (!BatteryChargeService.Instance.IsDCOk) DC_Ok.ForeColor = Color.Red; else DC_Ok.ForeColor = Color.Green;
             if (!BatteryChargeService.Instance.IsTempOk) { Temp_Ok.BackColor = Color.Red; BTNTempWarn.ForeColor = Color.Red; } else { Temp_Ok.ForeColor = Color.Green; BTNTempWarn.BackColor= Color.Transparent; }
             if (!BatteryChargeService.Instance.IsHardwareOk) { BTNTempWarn.BackColor = Color.Red;  HW_Ok.ForeColor = Color.Red; } else { HW_Ok.ForeColor = Color.Green; BTNTempWarn.BackColor = Color.Transparent; }
+            if (!BatteryChargeService.Instance.IsHardwareOk) { BTNHardwareWarn.BackColor = Color.Red; } else { BTNHardwareWarn.BackColor = Color.Transparent; }
+            if (!BatteryChargeService.Instance.IsCommsOk) { BTNCommsWarn.BackColor = Color.Red; } else { BTNCommsWarn.BackColor = Color.Transparent; }
 
             batteryStatusLabel.Text = "Battery - " + CanReceivingNode.GetStatusText(BatteryChargeService.Instance.BatteryState);
             batteryStatusLabel.ToolTipText = BatteryChargeService.Instance.BatteryStateMessage;
