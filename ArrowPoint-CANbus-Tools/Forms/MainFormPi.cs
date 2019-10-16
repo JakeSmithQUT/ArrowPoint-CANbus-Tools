@@ -858,6 +858,7 @@ namespace ArrowPointCANBusTool.Forms {
         private void BatteryTimerTick(object sender, EventArgs e) {
 
             Battery battery = BatteryChargeService.Instance.BatteryService.BatteryData;
+            //List<ChargeData> battery = BatteryMonitoringService.Instance.ChargeDataSet;
 
             SOCText.Text = (battery.SOCPercentage * 100).ToString() + "%";
             BatteryPackMaTxt.Text = battery.BatteryCurrent.ToString();

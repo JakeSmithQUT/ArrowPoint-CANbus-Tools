@@ -121,7 +121,7 @@ namespace ArrowPointCANBusTool.Canbus
                     responseData = responseData.Replace("\r", string.Empty);
                 }
 
-                if (responseData == "< ok >< ok >") { // MIGHT NEED TO REMOVE < hi > 
+                if (responseData == "< ok >< ok >") { 
                     Debug.WriteLine("Connected");
                 }
 
@@ -153,7 +153,7 @@ namespace ArrowPointCANBusTool.Canbus
             // String to store the response ASCII representation.
             String responseData = String.Empty;
             // Read the first batch of the TcpServer response bytes.
-            while (delayed < 1000)
+            while (delayed < 100) //changed to 100 for quicker response
             {
                 char finalChar = ' ';
 
@@ -415,9 +415,6 @@ namespace ArrowPointCANBusTool.Canbus
         // converts string in the format "frame can_id receive_time raw_bytes" as in socketcand rawmode (with < and > removed)
         public CanPacket rawInputToCan(String input)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
             input = input.Trim();
             String[] vals = input.Split(' ');
             if (vals.Length < 3) {
@@ -426,19 +423,18 @@ namespace ArrowPointCANBusTool.Canbus
 
             String rawCanId = vals[1] ;
             String rawBytesString = vals[3]; // populate with the frame's bytestring
-            CanPacket output = new CanPacket();
+            CanPacket output = new CanPacket(Convert.ToUInt32(rawCanId, 16));
 
-            output.RawBytesString = rawBytesString;
-            output.CanId = Convert.ToUInt32(rawCanId, 16);
-
-
-
-            // Do something you want to time
-
-            sw.Stop();
-
-            Console.WriteLine("CAN ID: " + rawCanId);
-            Console.WriteLine(sw.ElapsedMilliseconds.ToString());
+            // need to properly convert from string hex -> byte (may be in the wrong order, must check)
+            int NumberChars = rawBytesString.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(rawBytesString.Substring(i, 2), 16);
+            
+            for (int i = 0; i < 8; i++)
+            {
+                output.SetByte(i, bytes[i]);
+            }
             return output;
         }
     }
